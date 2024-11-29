@@ -4,7 +4,7 @@ run:
 	go run main.go
 
 dev:
-	CompileDaemon -command="go run main.go"
+	CompileDaemon -command="go run main.go" -build="go build -o $(APP_NAME)"
 
 build:
 	go build -o $(APP_NAME)

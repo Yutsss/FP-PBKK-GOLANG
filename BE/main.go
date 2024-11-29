@@ -1,11 +1,11 @@
 package main
 
 import (
-	"fmt"
 	"github.com/Yutsss/FP-PBKK-GOLANG/BE/command"
 	"github.com/Yutsss/FP-PBKK-GOLANG/BE/config"
 	"github.com/Yutsss/FP-PBKK-GOLANG/BE/constants"
 	"github.com/Yutsss/FP-PBKK-GOLANG/BE/middleware"
+	"github.com/Yutsss/FP-PBKK-GOLANG/BE/route"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 	"log"
@@ -29,22 +29,31 @@ func main() {
 		log.Fatalf("Error loading env file")
 	}
 
-	server := gin.Default()
-	server.Use(middleware.CORS())
+	var env = os.Getenv("APP_ENV")
+	var serve string
 
 	port := os.Getenv("APP_PORT")
 	if port == "" {
 		port = "8080"
 	}
 
-	var env = os.Getenv("APP_ENV")
-	fmt.Printf("Environment is %s\n", env)
-	var serve string
-	if env == constants.ENUM_ENV_PRODUCTION {
-		serve = ":" + port
-	} else if env == constants.ENUM_ENV_DEVELOPMENT {
+	if env == constants.ENUM_ENV_DEVELOPMENT {
+		gin.SetMode(gin.DebugMode)
 		serve = "localhost:" + port
+	} else if env == constants.ENUM_ENV_PRODUCTION {
+		gin.SetMode(gin.ReleaseMode)
+		serve = ":" + port
+	} else {
+		panic("Invalid APP_ENV")
 	}
+
+	server := gin.Default()
+	server.Use(middleware.CORS())
+
+	userController := config.UserDependencyInjection(db)
+
+	route.UserRouter(server, userController)
+
 	err = server.Run(serve)
 
 	if err != nil {
