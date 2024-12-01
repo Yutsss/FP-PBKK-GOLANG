@@ -5,14 +5,6 @@ import (
 	"net/http"
 )
 
-const (
-	MESSAGE_FAILED_TO_GET_DATA_FROM_BODY = "Failed to get data from body"
-	MESSAGE_FAILED_REGISTER_USER         = "Failed to register user"
-	MESSAGE_FAILED_LOGIN_USER            = "Failed to login user"
-	MESSAGE_FAILED_GET_USER              = "Failed to get user"
-	MESSAGE_FAILED_LOGOUT_USER           = "Failed to logout user"
-)
-
 type CustomError interface {
 	Error() string
 	Code() int
@@ -43,10 +35,21 @@ func (e *customError) UnWrap() error {
 	return e.err
 }
 
+const (
+	MESSAGE_FAILED_TO_GET_DATA_FROM_BODY = "Failed to get data from body"
+	MESSAGE_FAILED_TO_AUTHORIZE_USER     = "Failed to authorize user"
+	MESSAGE_FAILED_REGISTER_USER         = "Failed to register user"
+	MESSAGE_FAILED_LOGIN_USER            = "Failed to login user"
+	MESSAGE_FAILED_GET_USER              = "Failed to get user"
+	MESSAGE_FAILED_LOGOUT_USER           = "Failed to logout user"
+)
+
 var (
 	ErrInternalServer       = NewCustomError(errors.New("Internal server error"), http.StatusInternalServerError)
 	ErrBadRequest           = NewCustomError(errors.New("Bad request"), http.StatusBadRequest)
+	ErrNotAllowed           = NewCustomError(errors.New("Not allowed"), http.StatusMethodNotAllowed)
 	ErrEmailAlreadyExist    = NewCustomError(errors.New("Email already exist"), http.StatusConflict)
 	ErrWrongEmailOrPassword = NewCustomError(errors.New("Wrong email or password"), http.StatusBadRequest)
 	ErrUnauthorized         = NewCustomError(errors.New("Unauthorized"), http.StatusUnauthorized)
+	ErrUserNotFound         = NewCustomError(errors.New("User not found"), http.StatusNotFound)
 )

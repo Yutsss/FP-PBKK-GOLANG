@@ -37,6 +37,21 @@ type (
 	}
 
 	UserLoginResponse struct {
+		Role        string `json:"role"`
 		AccessToken string `json:"access_token"`
+	}
+
+	UserGetByIdRequest struct {
+		UserID uint `json:"id" form:"id" validate:"required"`
+	}
+
+	UserGetByIdResponse struct {
+		ID           uint   `json:"id"`
+		Name         string `json:"name"`
+		CompleteName string `json:"complete_name"`
+		Email        string `json:"email"`
+		PhoneNumber  string `json:"phone_number"`
+		Address      string `json:"address"`
+		Role         string `json:"role"`
 	}
 )

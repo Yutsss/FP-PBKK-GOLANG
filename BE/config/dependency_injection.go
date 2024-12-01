@@ -1,10 +1,13 @@
 package config
 
 import (
+	"github.com/Yutsss/FP-PBKK-GOLANG/BE/constants"
 	"github.com/Yutsss/FP-PBKK-GOLANG/BE/controller"
+	"github.com/Yutsss/FP-PBKK-GOLANG/BE/middleware"
 	"github.com/Yutsss/FP-PBKK-GOLANG/BE/repository"
 	"github.com/Yutsss/FP-PBKK-GOLANG/BE/service"
 	"github.com/Yutsss/FP-PBKK-GOLANG/BE/utility"
+	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
 )
 
@@ -15,4 +18,19 @@ func UserDependencyInjection(db *gorm.DB) controller.UserController {
 	userController := controller.NewUserController(userService)
 
 	return userController
+}
+
+func MiddlewareDependencyInjection() map[string]gin.HandlerFunc {
+	jwtUtils := utility.NewJWTUtils()
+
+	middlewares := make(map[string]gin.HandlerFunc)
+
+	middlewares["authMiddleware"] = middleware.AuthMiddleware(jwtUtils)
+	middlewares["allRoleMiddleware"] = middleware.RoleMiddleware([]string{
+		constants.ENUM_ROLE_ADMIN, constants.ENUM_ROLE_USER, constants.ENUM_ROLE_TECHNICIAN,
+	})
+	middlewares["adminRoleMiddleware"] = middleware.RoleMiddleware([]string{constants.ENUM_ROLE_ADMIN})
+	middlewares["technicianRoleMiddleware"] = middleware.RoleMiddleware([]string{constants.ENUM_ROLE_TECHNICIAN})
+
+	return middlewares
 }

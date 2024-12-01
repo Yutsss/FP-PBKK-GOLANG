@@ -50,9 +50,10 @@ func main() {
 	server := gin.Default()
 	server.Use(middleware.CORS())
 
+	middlewares := config.MiddlewareDependencyInjection()
 	userController := config.UserDependencyInjection(db)
 
-	route.UserRouter(server, userController)
+	route.UserRouter(server, userController, middlewares)
 
 	err = server.Run(serve)
 

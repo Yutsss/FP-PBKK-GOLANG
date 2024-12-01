@@ -5,10 +5,12 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func UserRouter(route *gin.Engine, userController controller.UserController) {
+func UserRouter(route *gin.Engine, userController controller.UserController, middlewares map[string]gin.HandlerFunc) {
 	userRoute := route.Group("/api/user")
 	{
 		userRoute.POST("/register", userController.Register)
 		userRoute.POST("/login", userController.Login)
+		userRoute.GET("/me", middlewares["authMiddleware"], middlewares["allRoleMiddleware"], userController.Get)
+		userRoute.POST("/logout", middlewares["authMiddleware"], middlewares["allRoleMiddleware"], userController.Logout)
 	}
 }

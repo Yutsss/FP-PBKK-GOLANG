@@ -11,8 +11,8 @@ import (
 type (
 	UserRepository interface {
 		Create(ctx context.Context, tx *gorm.DB, data dto.UserRegisterRequest) (entity.User, error)
-		FindByEmail(ctx context.Context, email string) (entity.User, error)
-		FIndById(ctx context.Context, id uint) (entity.User, error)
+		FindByEmail(ctx context.Context, tx *gorm.DB, email string) (entity.User, error)
+		FindById(ctx context.Context, tx *gorm.DB, id uint) (entity.User, error)
 	}
 
 	userRepository struct {
@@ -49,10 +49,14 @@ func (r *userRepository) Create(ctx context.Context, tx *gorm.DB, data dto.UserR
 	return user, nil
 }
 
-func (r *userRepository) FindByEmail(ctx context.Context, email string) (entity.User, error) {
+func (r *userRepository) FindByEmail(ctx context.Context, tx *gorm.DB, email string) (entity.User, error) {
+	if tx == nil {
+		tx = r.db
+	}
+
 	var user entity.User
 
-	err := r.db.WithContext(ctx).Where("email = ?", email).First(&user).Error
+	err := tx.WithContext(ctx).Where("email = ?", email).First(&user).Error
 
 	if err != nil {
 		if errors.As(err, &gorm.ErrRecordNotFound) {
@@ -64,10 +68,14 @@ func (r *userRepository) FindByEmail(ctx context.Context, email string) (entity.
 	return user, nil
 }
 
-func (r *userRepository) FIndById(ctx context.Context, id uint) (entity.User, error) {
+func (r *userRepository) FindById(ctx context.Context, tx *gorm.DB, id uint) (entity.User, error) {
+	if tx == nil {
+		tx = r.db
+	}
+
 	var user entity.User
 
-	err := r.db.WithContext(ctx).Where("id = ?", id).First(&user).Error
+	err := tx.WithContext(ctx).Where("id = ?", id).First(&user).Error
 
 	if err != nil {
 		if errors.As(err, &gorm.ErrRecordNotFound) {

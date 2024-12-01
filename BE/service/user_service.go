@@ -13,6 +13,7 @@ type (
 	UserService interface {
 		Register(ctx context.Context, data dto.UserRegisterRequest) (dto.UserRegisterResponse, errorUtils.CustomError)
 		Login(ctx context.Context, data dto.UserLoginRequest) (dto.UserLoginResponse, errorUtils.CustomError)
+		GetById(ctx context.Context, data dto.UserGetByIdRequest) (dto.UserGetByIdResponse, errorUtils.CustomError)
 	}
 
 	userService struct {
@@ -33,7 +34,7 @@ func (s *userService) Register(ctx context.Context, data dto.UserRegisterRequest
 		return dto.UserRegisterResponse{}, err
 	}
 
-	userExist, err := s.userRepo.FindByEmail(ctx, data.Email)
+	userExist, err := s.userRepo.FindByEmail(ctx, nil, data.Email)
 	if err != nil {
 		return dto.UserRegisterResponse{}, errorUtils.ErrInternalServer
 	}
@@ -65,7 +66,7 @@ func (s *userService) Login(ctx context.Context, data dto.UserLoginRequest) (dto
 		return dto.UserLoginResponse{}, err
 	}
 
-	user, err := s.userRepo.FindByEmail(ctx, data.Email)
+	user, err := s.userRepo.FindByEmail(ctx, nil, data.Email)
 	if err != nil {
 		return dto.UserLoginResponse{}, errorUtils.ErrInternalServer
 	}
@@ -86,5 +87,33 @@ func (s *userService) Login(ctx context.Context, data dto.UserLoginRequest) (dto
 
 	return dto.UserLoginResponse{
 		AccessToken: AccessToken,
+		Role:        user.Role,
 	}, nil
+}
+
+func (s *userService) GetById(ctx context.Context, data dto.UserGetByIdRequest) (dto.UserGetByIdResponse, errorUtils.CustomError) {
+	if err := validation.Validate(data); err != nil {
+		return dto.UserGetByIdResponse{}, err
+	}
+
+	user, err := s.userRepo.FindById(ctx, nil, data.UserID)
+	if err != nil {
+		return dto.UserGetByIdResponse{}, errorUtils.ErrInternalServer
+	}
+
+	if user.ID == 0 {
+		return dto.UserGetByIdResponse{}, errorUtils.ErrUserNotFound
+	}
+
+	res := dto.UserGetByIdResponse{
+		ID:           user.ID,
+		Name:         user.Name,
+		CompleteName: user.CompleteName,
+		Email:        user.Email,
+		PhoneNumber:  user.PhoneNumber,
+		Address:      user.Address,
+		Role:         user.Role,
+	}
+
+	return res, nil
 }

@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/Yutsss/FP-PBKK-GOLANG/BE/dto"
 	errorUtils "github.com/Yutsss/FP-PBKK-GOLANG/BE/utility/error"
+	"github.com/gin-gonic/gin"
 	"github.com/golang-jwt/jwt/v4"
 	"os"
 	"time"
@@ -12,7 +13,8 @@ import (
 type (
 	JWTUtils interface {
 		GenerateToken(userID uint, role string) (string, errorUtils.CustomError)
-		ValidateToken(token string) (*jwt.Token, error)
+		ExtractFromCookie(ctx *gin.Context) (string, errorUtils.CustomError)
+		ValidateToken(token string) (*jwt.Token, errorUtils.CustomError)
 		GetPayload(token string) (dto.AuthPayload, errorUtils.CustomError)
 	}
 
@@ -80,15 +82,32 @@ func (j *jwtUtils) GenerateToken(userId uint, role string) (string, errorUtils.C
 	return signedToken, nil
 }
 
+func (j *jwtUtils) ExtractFromCookie(ctx *gin.Context) (string, errorUtils.CustomError) {
+	cookie, err := ctx.Cookie("access_token")
+	if err != nil {
+		return "", errorUtils.ErrUnauthorized
+	}
+	return cookie, nil
+}
+
 func (j *jwtUtils) parseToken(t_ *jwt.Token) (any, error) {
 	if _, ok := t_.Method.(*jwt.SigningMethodHMAC); !ok {
-		return nil, fmt.Errorf("unexpected signing method %v", t_.Header["alg"])
+		return nil, fmt.Errorf("unexpected signing method: %v", t_.Header["alg"])
 	}
 	return []byte(j.secretKey), nil
 }
 
-func (j *jwtUtils) ValidateToken(token string) (*jwt.Token, error) {
-	return jwt.Parse(token, j.parseToken)
+func (j *jwtUtils) ValidateToken(token string) (*jwt.Token, errorUtils.CustomError) {
+	parsedToken, err := jwt.Parse(token, j.parseToken)
+	if err != nil {
+		return nil, errorUtils.ErrUnauthorized
+	}
+
+	if !parsedToken.Valid {
+		return nil, errorUtils.ErrUnauthorized
+	}
+
+	return parsedToken, nil
 }
 
 func (j *jwtUtils) GetPayload(token string) (dto.AuthPayload, errorUtils.CustomError) {
