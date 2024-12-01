@@ -30,4 +30,13 @@ type (
 		Address      string `json:"address"`
 		Role         string `json:"role"`
 	}
+
+	UserLoginRequest struct {
+		Email    string `json:"email" form:"email" validate:"required,email"`
+		Password string `json:"password" form:"password" validate:"required,min=8,max=255"`
+	}
+
+	UserLoginResponse struct {
+		AccessToken string `json:"access_token"`
+	}
 )

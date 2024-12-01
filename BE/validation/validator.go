@@ -5,9 +5,10 @@ import (
 	"fmt"
 	errorUtils "github.com/Yutsss/FP-PBKK-GOLANG/BE/utility/error"
 	"github.com/go-playground/validator/v10"
+	"net/http"
 )
 
-func Validate(data interface{}) error {
+func Validate(data interface{}) errorUtils.CustomError {
 	validate := validator.New()
 	err := validate.Struct(data)
 
@@ -23,15 +24,17 @@ func Validate(data interface{}) error {
 	return nil
 }
 
-func CustomErrorMessage(err validator.FieldError) error {
+func CustomErrorMessage(err validator.FieldError) errorUtils.CustomError {
 	switch err.Tag() {
 	case "required":
-		return fmt.Errorf("%s is required", err.Field())
+		return errorUtils.NewCustomError(fmt.Errorf("%s is required", err.Field()), http.StatusBadRequest)
 	case "min":
-		return fmt.Errorf("%s cannot be under %s characters", err.Field(), err.Param())
+		return errorUtils.NewCustomError(fmt.Errorf("%s must be at least %s", err.Field(), err.Param()), http.StatusBadRequest)
+	case "max":
+		return errorUtils.NewCustomError(fmt.Errorf("%s must be at most %s", err.Field(), err.Param()), http.StatusBadRequest)
 	case "email":
-		return fmt.Errorf("Invalid email format")
+		return errorUtils.NewCustomError(fmt.Errorf("%s is not a valid email", err.Field()), http.StatusBadRequest)
 	default:
-		return fmt.Errorf("Invalid value for %s", err.Field())
+		return errorUtils.ErrInternalServer
 	}
 }
