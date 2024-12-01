@@ -1,3 +1,4 @@
 BE/.env
+BE/.env.production
 FE/.env
 FE/fe/node_modules
