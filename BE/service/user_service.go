@@ -14,6 +14,7 @@ type (
 		Register(ctx context.Context, data dto.UserRegisterRequest) (dto.UserRegisterResponse, errorUtils.CustomError)
 		Login(ctx context.Context, data dto.UserLoginRequest) (dto.UserLoginResponse, errorUtils.CustomError)
 		GetById(ctx context.Context, data dto.UserGetByIdRequest) (dto.UserGetByIdResponse, errorUtils.CustomError)
+		GetAll(ctx context.Context) (dto.UserGetAllResponse, errorUtils.CustomError)
 	}
 
 	userService struct {
@@ -114,6 +115,35 @@ func (s *userService) GetById(ctx context.Context, data dto.UserGetByIdRequest) 
 		Address:      user.Address,
 		Role:         user.Role,
 	}
+
+	return res, nil
+}
+
+func (s *userService) GetAll(ctx context.Context) (dto.UserGetAllResponse, errorUtils.CustomError) {
+	users, err := s.userRepo.FindAll(ctx, nil)
+	if err != nil {
+		return dto.UserGetAllResponse{}, errorUtils.ErrInternalServer
+	}
+
+	res := dto.UserGetAllResponse{
+		Users: make([]dto.UserGetByIdResponse, 0),
+	}
+
+	for _, user := range users {
+		res.Users = append(res.Users, dto.UserGetByIdResponse{
+			ID:           user.ID,
+			Name:         user.Name,
+			CompleteName: user.CompleteName,
+			Email:        user.Email,
+			PhoneNumber:  user.PhoneNumber,
+			Address:      user.Address,
+			Role:         user.Role,
+		})
+	}
+
+	//if len(res.Users) == 0 {
+	//	return dto.UserGetAllResponse{}, nil
+	//}
 
 	return res, nil
 }

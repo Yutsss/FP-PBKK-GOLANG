@@ -9,8 +9,11 @@ dev:
 build:
 	go build -o $(APP_NAME)
 
-migrate:
-	go run main.go --migrate
+migrate-dev:
+	GO_ENV=development  go run main.go --migrate
+
+migrate-prod:
+	GO_ENV=production  go run main.go --migrate
 
 run-build:
 	./$(APP_NAME)

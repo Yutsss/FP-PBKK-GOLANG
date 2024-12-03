@@ -16,6 +16,7 @@ type (
 		Register(ctx *gin.Context)
 		Login(ctx *gin.Context)
 		Get(ctx *gin.Context)
+		GetAll(ctx *gin.Context)
 		Logout(ctx *gin.Context)
 	}
 
@@ -98,6 +99,25 @@ func (c *userController) Get(ctx *gin.Context) {
 	}
 
 	res := utility.ResponseSuccess(successUtils.MESSAGE_SUCCESS_GET_USER, resData, http.StatusOK)
+	ctx.JSON(res.Code, res)
+}
+
+func (c *userController) GetAll(ctx *gin.Context) {
+	resData, err := c.userService.GetAll(ctx.Request.Context())
+
+	if err != nil {
+		res := utility.ResponseError(errorUtils.MESSAGE_FAILED_GET_ALL_USER, err.Error(), err.Code())
+		ctx.AbortWithStatusJSON(res.Code, res)
+		return
+	}
+
+	if len(resData.Users) == 0 {
+		res := utility.ResponseSuccess(successUtils.MESSAGE_SUCCESS_GET_ALL_USERS_EMPTY, resData, http.StatusOK)
+		ctx.JSON(res.Code, res)
+		return
+	}
+
+	res := utility.ResponseSuccess(successUtils.MESSAGE_SUCCESS_GET_ALL_USER, resData, http.StatusOK)
 	ctx.JSON(res.Code, res)
 }
 

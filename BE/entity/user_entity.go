@@ -14,6 +14,7 @@ type User struct {
 	PhoneNumber  string `gorm:"type:varchar(255);not null" json:"phone_number"`
 	Address      string `gorm:"type:varchar(255);not null" json:"address"`
 	Role         string `gorm:"type:varchar(10);not null;default:'user'" json:"role"`
+	Admin        Admin  `gorm:"foreignKey:UserID;references:ID" json:"admin"`
 }
 
 func (u *User) BeforeCreate(tx *gorm.DB) error {

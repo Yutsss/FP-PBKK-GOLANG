@@ -11,6 +11,7 @@ func UserRouter(route *gin.Engine, userController controller.UserController, mid
 		userRoute.POST("/register", userController.Register)
 		userRoute.POST("/login", userController.Login)
 		userRoute.GET("/me", middlewares["authMiddleware"], middlewares["allRoleMiddleware"], userController.Get)
+		userRoute.GET("/all", middlewares["authMiddleware"], middlewares["adminRoleMiddleware"], userController.GetAll)
 		userRoute.POST("/logout", middlewares["authMiddleware"], middlewares["allRoleMiddleware"], userController.Logout)
 	}
 }

@@ -54,4 +54,8 @@ type (
 		Address      string `json:"address"`
 		Role         string `json:"role"`
 	}
+
+	UserGetAllResponse struct {
+		Users []UserGetByIdResponse `json:"users"`
+	}
 )
