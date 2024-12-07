@@ -1,7 +1,10 @@
 APP_NAME=backend
 
+dep:
+	go mod tidy
+
 run:
-	go run main.go
+	GO_ENV=development go run main.go
 
 dev:
 	CompileDaemon -command="go run main.go" -build="go build -o $(APP_NAME)"
