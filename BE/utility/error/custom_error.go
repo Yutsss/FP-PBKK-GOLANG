@@ -43,6 +43,8 @@ const (
 	MESSAGE_FAILED_GET_USER              = "Failed to get user"
 	MESSAGE_FAILED_GET_ALL_USER          = "Failed to get all user"
 	MESSAGE_FAILED_LOGOUT_USER           = "Failed to logout user"
+	MESSAGE_FAILED_CREATE_TICKET         = "Failed to create ticket"
+	MESSAGE_FAILED_GET_ALL_TICKET        = "Failed to get all ticket"
 )
 
 var (

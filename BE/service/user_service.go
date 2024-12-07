@@ -141,9 +141,5 @@ func (s *userService) GetAll(ctx context.Context) (dto.UserGetAllResponse, error
 		})
 	}
 
-	//if len(res.Users) == 0 {
-	//	return dto.UserGetAllResponse{}, nil
-	//}
-
 	return res, nil
 }
