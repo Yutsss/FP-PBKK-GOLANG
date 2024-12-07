@@ -1,0 +1,186 @@
+:root {
+    --accent: rgba(51, 24, 240, 1);
+    --background: rgba(6, 5, 17, 1);
+    --form-background: #531D8180;
+    --body-base-font-family: "Noto Sans KR-Regular", Helvetica;
+    --body-base-font-size: 16px;
+    --body-base-font-style: normal;
+    --body-base-font-weight: 400;
+    --body-base-letter-spacing: 0px;
+    --body-base-line-height: 139.9999976158142%;
+    --buttons-primary: rgba(153, 142, 232, 1);
+    --buttons-secondary: rgba(36, 19, 150, 1);
+    --color-background-brand-default: var(--color-primitives-brand-800);
+    --color-background-brand-hover: var(--color-primitives-brand-900);
+    --color-background-default-default: var(--color-primitives-white-1000);
+    --color-border-brand-default: var(--color-primitives-brand-800);
+    --color-border-default-default: var(--color-primitives-gray-300);
+    --color-primitives-brand-100: rgba(245, 245, 245, 1);
+    --color-primitives-brand-300: rgba(217, 217, 217, 1);
+    --color-primitives-brand-800: rgba(44, 44, 44, 1);
+    --color-primitives-brand-900: rgba(30, 30, 30, 1);
+    --color-primitives-gray-300: rgba(217, 217, 217, 1);
+    --color-primitives-gray-400: rgba(179, 179, 179, 1);
+    --color-primitives-gray-600: rgba(68, 68, 68, 1);
+    --color-primitives-gray-900: rgba(30, 30, 30, 1);
+    --color-primitives-slate-200: rgba(227, 227, 227, 1);
+    --color-primitives-slate-900: rgba(48, 48, 48, 1);
+    --color-primitives-white-1000: rgba(255, 255, 255, 1);
+    --color-primitives-white-400: rgba(255, 255, 255, 0.4);
+    --color-text-brand-on-brand: var(--color-primitives-brand-100);
+    --color-text-default-default: var(--color-primitives-gray-900);
+    --color-text-default-tertiary: var(--color-primitives-gray-400);
+    --color-text-neutral-default: var(--color-primitives-slate-900);
+    --single-line-body-base-font-family: "Noto Sans KR-Regular", Helvetica;
+    --single-line-body-base-font-size: 16px;
+    --single-line-body-base-font-style: normal;
+    --single-line-body-base-font-weight: 400;
+    --single-line-body-base-letter-spacing: 0px;
+    --single-line-body-base-line-height: 100%;
+    --size-radius-200: 8px;
+    --size-space-200: 8px;
+    --size-space-300: 12px;
+    --size-space-400: 16px;
+    --size-space-600: 24px;
+    --text: #E9E7F6;
+    background-color: var(--background);
+}
+
+/* Form Styling */
+.form {
+    background-color: var(--form-background); /* Use the background color variable */
+    border-radius: var(--size-radius-200); /* Use border radius variable */
+    width: 1000px;
+    padding: var(--size-space-400);
+    box-sizing: border-box;
+    position: relative;
+    max-width: 100%;
+    margin-left: 8%;
+    margin-top: 50px;
+    height: 950px;
+}
+
+/* Header Styling */
+.form .text-wrapper {
+    color: var(--color-primitives-white-1000); /* Use white color from primitives */
+    font-family: var(--body-base-font-family); /* Use body base font family */
+    font-size: var(--body-base-font-size); /* Use body base font size */
+    font-weight: var(--body-base-font-weight); /* Use body base font weight */
+    letter-spacing: var(--body-base-letter-spacing); /* Use body base letter-spacing */
+    line-height: var(--body-base-line-height); /* Use body base line-height */
+    position: relative;
+    margin-bottom: var(--size-space-200); /* Adjusted margin for better spacing */
+}
+
+/* Overlap Section */
+.form .overlap {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-space-200);
+    padding: var(--size-space-400);
+    border-radius: var(--size-radius-200);
+    background-color: transparent; /* Keep transparent for inner elements */
+    position: relative;
+    justify-content: center;  /* Horizontally center */
+    align-items: center;      /* Vertically center */
+    min-height: 100%;        /* Ensure full viewport height */
+    margin: 0; 
+}
+
+/* Input Fields */
+.text-area {
+    font: var(--body-base-font-style) var(--body-base-font-weight) var(--body-base-font-size) var(--body-base-font-family); /* Use body base font style, weight, size, and family */
+    color: --text;
+}
+.form .input, .form .textarea, .form .div-wrapper {
+    align-items: flex-start;
+    background-color: transparent; /* Transparent background */
+    display: flex;
+    padding: var(--size-space-300) var(--size-space-400);
+    min-width: 240px;
+    height: 42px;
+    margin-bottom: var(--size-space-200); /* Adjusted margin */
+}
+
+/* Labels */
+.form .text-wrapper-2 {
+    color: var(--color-primitives-white-1000); /* Use white color from primitives */
+    font-family: var(--body-base-font-family); /* Use body base font family */
+    font-size: var(--body-base-font-size); /* Use body base font size */
+    font-weight: var(--body-base-font-weight); /* Use body base font weight */
+    letter-spacing: var(--body-base-letter-spacing); /* Use body base letter-spacing */
+    line-height: var(--body-base-line-height); /* Use body base line-height */
+    position: relative;
+    margin-bottom: var(--size-space-200); /* Adjusted margin for better spacing */
+}
+
+/* Buttons */
+.form .button-group {
+    all: unset;
+    display: flex;
+    gap: var(--size-space-400);
+    justify-content: center;
+    position: relative;
+    margin-top: var(--size-space-600); /* Adjusted margin for spacing */
+}
+
+.form .button {
+    color: var(--text);
+    all: unset;
+    background-color: var(--buttons-primary); /* Use buttons primary color */
+    border-radius: var(--size-radius-200); /* Use size radius variable */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--size-space-300) var(--size-space-400);
+    width: 100%;
+    text-align: center;
+}
+
+.form .div {
+    color: var(--color-text-brand-on-brand); /* Use brand color for text */
+    font-family: var(--single-line-body-base-font-family); /* Use single-line font family */
+    font-size: var(--single-line-body-base-font-size); /* Use single-line font size */
+}
+
+/* Forms and Fields */
+.form .form-contact {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-space-600);
+    padding: var(--size-space-400);
+}
+
+.form .ticket-body, .form .email, .form .kategori, .form .ticket-subject {
+    margin-bottom: var(--size-space-400); /* Uniform margin between sections */
+    
+}
+
+.form .label {
+    font-size: var(--body-base-font-size); /* Use body base font size */
+    color: var(--color-text-default-default); /* Use default text color */
+}
+
+/* Drag Icon */
+.form .drag {
+    width: 7px;
+    height: 7px;
+    position: absolute;
+    top: 67px;
+    right: 10px;
+}
+
+/* Form Text Area */
+.form .textarea {
+    min-height: 80px;
+    padding: var(--size-space-300) var(--size-space-400);
+    width: 100%;
+    margin-bottom: var(--size-space-200); /* Adjusted margin */
+}
+
+/* Adjust Input Fields */
+.form input, .form select, .form textarea {
+    background-color: var(--color-background-default-default); /* Use default background color */
+    padding: var(--size-space-300) var(--size-space-400);
+    width: 100%;
+}

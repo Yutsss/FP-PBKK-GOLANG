@@ -1,36 +1,111 @@
-import React from 'react';
-import RegistrationForm from './Regist';
+import React, { useState } from 'react';
+import UserRegister from './Regist';
 import ServiceDesk from './serviceDesk';
-import {BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom'
-
+import UserCheckTicketsLoggedIn from './checkTicket';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
 function App() {
+  // Example state for user login status and role
+  const [user, setUser] = useState({ loggedIn: false, role: 'guest' }); // 'guest' is the default
+
   return (
-    <Router> {/*added a router to use the Link component*/}
-      <div>
-        <header style={{ backgroundColor: '#002d72', color: 'white', padding: '10px' }}>
+    <Router>
+      {/* Added a router to use the Link component */}
+      <div style={{ backgroundColor: '#0d0911' }}>
+        <header style={{ backgroundColor: '#0d0911', color: 'white', padding: '10px' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <div style={{ display: 'flex', alignItems: 'center' }}> <img src="logo192.png" alt="Logo" style={{ height: '50px' }} /> <h1>ServiceDesk</h1></div>
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+              <img src="logo192.png" alt="Logo" style={{ height: '50px' }} />
+              <h1>ServiceDesk</h1>
+            </div>
             <nav>
-              <Link to="/">Home</Link> {/* Use Link component */}
-              <Link to="/check-tickets">Check Tickets</Link> {/* Use Link component */}
-              <Link to="/knowledge-base">Knowledge Base</Link> {/* Use Link component */}
-              <Link to="/how-to-create-ticket">How to Create Ticket</Link> {/* Use Link component */}
-              <Link to="/register" style={{ backgroundColor: 'red', color: 'white', padding: '5px 10px', borderRadius: '5px' }}>Register an Account</Link> {/* Use Link component */}
+              <Link
+                to="/"
+                style={{
+                  color: 'white',
+                  padding: '5px 10px',
+                  borderRadius: '5px',
+                  textDecoration: 'none',
+                }}
+              >
+                Home
+              </Link>
+              <Link
+                to="/check-tickets"
+                style={{
+                  color: 'white',
+                  padding: '5px 10px',
+                  borderRadius: '5px',
+                  textDecoration: 'none',
+                }}
+              >
+                Check Tickets
+              </Link>
+              <Link
+                to="/knowledge-base"
+                style={{
+                  color: 'white',
+                  padding: '5px 10px',
+                  borderRadius: '5px',
+                  textDecoration: 'none',
+                }}
+              >
+                Knowledge Base
+              </Link>
+              <Link
+                to="/create-ticket"
+                style={{
+                  color: 'white',
+                  padding: '5px 10px',
+                  borderRadius: '5px',
+                  textDecoration: 'none',
+                }}
+              >
+                Create Ticket
+              </Link>
+
+              {/* Conditional rendering based on login state */}
+              {!user.loggedIn ? (
+                <Link
+                  to="/register"
+                  style={{
+                    color: 'white',
+                    padding: '5px 10px',
+                    borderRadius: '5px',
+                    textDecoration: 'none',
+                  }}
+                >
+                  Register an Account
+                </Link>
+              ) : (
+                <Link
+                  to={`/${user.role}`}
+                  style={{
+                    color: 'white',
+                    padding: '5px 10px',
+                    borderRadius: '5px',
+                    textDecoration: 'none',
+                  }}
+                >
+                  {user.role === 'admin' ? 'Admin' : 'User' }
+                </Link>
+              )}
             </nav>
           </div>
         </header>
 
-
-          <Routes> {/* Added routes component*/}
-            <Route path="/" element={<ServiceDesk />} />
-            <Route path="/register" element={<RegistrationForm />} />
-          </Routes>
-
+        {/* Added routes component */}
+        <Routes>
+          <Route path="/" element={<ServiceDesk />} />
+          <Route path="/register" element={<UserRegister />} />
+          {/* Dynamic routes for different user roles */}
+          <Route path="/user" element={<div>User Dashboard</div>} />
+          <Route path="/admin" element={<div>Admin Dashboard</div>} />
+          <Route path="/tickets" element={<div>UserCheckTicketsLoggedIn</div>} />
+        </Routes>
       </div>
     </Router>
   );
 }
-
 
 export default App;
