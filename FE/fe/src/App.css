@@ -1,3 +1,11 @@
+:root {
+  --accent: rgba(51, 24, 240, 1);
+  --background: rgba(6, 5, 17, 1);
+  --buttons-primary: rgba(153, 142, 232, 1);
+  --buttons-secondary: rgba(36, 19, 150, 1);
+  --text: rgba(233, 231, 246, 1);
+}
+
 .App {
   text-align: center;
 }
@@ -13,19 +21,72 @@
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.header {
+  height: 100%;
+  width: 10%;
 }
 
-.App-link {
-  color: #61dafb;
+.header .overlap-group {
+  background-color: #0d0911;
+  border: 2px solid;
+  border-color: #b892d8;
+  height: 80px;
+  left: -2px;
+  position: relative;
+  top: -2px;
+  width: 1920px;
+}
+
+.header .register {
+  color: #ffffff;
+  font-family: "Noto Sans KR-Regular", Helvetica;
+  font-size: 20px;
+  font-weight: 400;
+  left: 1764px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 32px;
+  width: 101px;
+}
+
+.header .text-wrapper {
+  color: #ffffff;
+  font-family: "Noto Sans KR-Regular", Helvetica;
+  font-size: 20px;
+  font-weight: 400;
+  left: 1296px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 32px;
+  width: 168px;
+}
+
+.header .div {
+  color: #ffffff;
+  font-family: "Noto Sans KR-Regular", Helvetica;
+  font-size: 20px;
+  font-weight: 400;
+  left: 1530px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 32px;
+  width: 168px;
+}
+
+.header .text-wrapper-2 {
+  color: #ffffff;
+  font-family: "Noto Sans KR-Regular", Helvetica;
+  font-size: 20px;
+  font-weight: 400;
+  left: 36px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 32px;
+  width: 154px;
 }
 
 @keyframes App-logo-spin {

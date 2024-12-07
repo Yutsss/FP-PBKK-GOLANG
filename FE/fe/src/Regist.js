@@ -1,191 +1,133 @@
 import React, { useState } from 'react';
-import './Regist.css';
+import { useCallback } from 'react';
+import { useNavigate } from "react-router-dom";
+import styles from './Regist.module.css';
 
-function RegistrationForm() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+
+const UserRegister = () => {
+  const navigate = useNavigate();
+
+  const onRegisterTextClick = useCallback(() => {
+    navigate("/");
+  }, [navigate]);
+
+
+  const onCheckTicketsTextClick = useCallback(() => {
+    // Add your code here
+  }, []);
+
+  // State hooks to store user input
   const [formData, setFormData] = useState({
+    name: '',
     email: '',
-    username: '',
     password: '',
-    confirmPassword: '',
-    firstName: '',
-    lastName: '',
-    status: '', // Default value
-    unit: '',
-    noHp: '',
-    captcha: '',
+    phoneNumber: '',
+    address: '',
   });
 
-    const [usernameAvailable, setUsernameAvailable] = useState(null);
-
+  // Handle input change
   const handleInputChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-        });
-        if (e.target.name === "username"){
-            setUsernameAvailable(null);
-        }
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   };
 
-
-    const checkUsername = async () => {
-        try{
-            const response = await fetch(`/api/check-username?username=${formData.username}`);
-            const data = await response.json();
-            setUsernameAvailable(data.available);
-        } catch (error){
-            console.error("Error checking username:", error)
-            setUsernameAvailable(null);
-        }
-    }
-
-  const handleSubmit = async (e) => {
+  // Handle form submission
+  const handleSubmit = (e) => {
     e.preventDefault();
-
-        if (formData.password !== formData.confirmPassword){
-            alert("Passwords do not match")
-            return;
-        }
-
-      //captcha validation would go here
-
-    try {
-        const response = await fetch('/api/register', {
-            method: 'POST',
-            headers:{
-                'Content-Type' : 'application/json'
-            },
-            body: JSON.stringify(formData),
-
-        });
-
-        if(response.ok){
-            //registration successful
-            alert("registration Successful");
-            closeModal()
-            //reset form
-            setFormData({
-                email: '',
-                username: '',
-                password: '',
-                confirmPassword: '',
-                firstName: '',
-                lastName: '',
-                status: '', 
-                unit: '',
-                noHp: '',
-                captcha: '',
-              });
-
-        } else{
-            const errorData = await response.json()
-            console.error("Registration failed:", errorData);
-            alert("Registration Failed" + errorData.message); 
-        }
-
-    } catch(error){
-        console.error("Registration error", error);
-        alert("An error occurred during registration.")
-    }
-  };
-
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
+    // Here you can process the data, e.g., send it to an API or update the state.
+    console.log(formData);
   };
 
   return (
-      <div>
-          <button onClick={openModal} style = {{backgroundColor: "green", color: "white", padding: "10px 20px", border: "none", borderRadius: "5px", cursor: "pointer"}}>Register</button>
-
-
-      {isModalOpen && (
-    <div className="modal-overlay" onClick={closeModal}>       
-    <div className="modal-content" onClick={e => e.stopPropagation()}>
-        <span className="close" onClick={closeModal}>×</span> {/* Close button */}
-          <h2>Register an account at Service Desk | Layanan Aspirasi ITS</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-            <label htmlFor="email">Email:</label>
-            <input type="email" id="email" name="email" value={formData.email} onChange={handleInputChange} required />
-        </div>
-          <div>
-              <label htmlFor = "username">Username:</label>
-              <input type = "text" id="username" name="username" value = {formData.username} onChange = {handleInputChange} required onBlur = {checkUsername} />
-
-              {usernameAvailable === true && <p style={{color: "green"}}>Username Available</p>}
-              {usernameAvailable === false && <p style = {{color: "red"}}>Username is taken</p>}
-              {usernameAvailable === null && formData.username !== ""&& <p style={{color:"grey"}}>Checking Username...</p> }
-          </div>
-        <div>
-            <label htmlFor="password">Password:</label>
-            <input type="password" id="password" name="password" value={formData.password} onChange={handleInputChange} required />
-        </div>
-        <div>
-            <label htmlFor="confirmPassword">Confirm Password:</label>
-            <input type="password" id="confirmPassword" name="confirmPassword" value={formData.confirmPassword} onChange={handleInputChange} required />
-        </div>
-        <div>
-            <label htmlFor="firstName">First Name:</label>
-            <input type="text" id="firstName" name="firstName" value={formData.firstName} onChange={handleInputChange} required />
-          </div>
-          <div> <label htmlFor="lastName">Last Name:</label>
-          <input
-              type="text"
-              id="lastName"
-              name="lastName"
-              value={formData.lastName}
-                onChange={handleInputChange}
-                required
-                />
-          </div>
-        <div>
-            <label htmlFor="status">Status *:</label>
-            <select id="status" name="status" value={formData.status} onChange={handleInputChange} required>
-            <option value="Dosen">Dosen</option>
-            <option value="Mahasiswa">Mahasiswa</option>
-            {/* Add other status options as needed */}
-            </select>
-        </div>
-        <div>
-          <label htmlFor="unit">Unit *:</label>
+    <div className={styles.userRegister}>
+      <div className={styles.register1}>Register</div>
+      <form onSubmit={handleSubmit} className={styles.formRegister}>
+        <div className={styles.inputField}>
+          <div className={styles.label}>Name</div>
+          <div className={styles.input}>
             <input
-                type="text"
-                id="unit"
-                name="unit"
-              value={formData.unit}
+              type="text"
+              name="name"
+              value={formData.name}
               onChange={handleInputChange}
-                required
+              className={styles.value}
+              required
             />
-        </div>
-        <div>
-            <label htmlFor="noHp">No Hp/Telp *:</label>
-            <input type="tel" id="noHp" name="noHp" value={formData.noHp} onChange={handleInputChange} required />
-        </div>
-
-          <div>
-            <label>Captcha</label>
-            <img src = "captcha.png" alt = "captcha"/>
-              <input type = "text" name = "captcha" value={formData.captcha} onChange={handleInputChange}/>
-
           </div>
+        </div>
 
-        <p>* = Required.</p>
+        <div className={styles.inputField}>
+          <div className={styles.label}>Email</div>
+          <div className={styles.input}>
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleInputChange}
+              className={styles.value}
+              required
+            />
+          </div>
+        </div>
 
+        <div className={styles.inputField}>
+          <div className={styles.label}>Password</div>
+          <div className={styles.input}>
+            <input
+              type="password"
+              name="password"
+              value={formData.password}
+              onChange={handleInputChange}
+              className={styles.value}
+              required
+            />
+          </div>
+        </div>
 
-        <button type="submit" style={{ backgroundColor: '#007bff', color: 'white', padding: '10px 20px', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>Register</button>
+        <div className={styles.inputField}>
+          <div className={styles.label}>Phone Number</div>
+          <div className={styles.input}>
+            <input
+              type="tel"
+              name="phoneNumber"
+              value={formData.phoneNumber}
+              onChange={handleInputChange}
+              className={styles.value}
+              required
+            />
+          </div>
+        </div>
+
+        <div className={styles.inputField}>
+          <div className={styles.label}>Address</div>
+          <div className={styles.input}>
+            <textarea
+              name="address"
+              value={formData.address}
+              onChange={handleInputChange}
+              className={styles.value}
+              required
+            />
+          </div>
+        </div>
+
+        <div className={styles.button}>
+          <div className={styles.star} />
+          <button type="submit" className={styles.button1}>
+            Register
+          </button>
+          <div className={styles.star} />
+        </div>
+
+        <div className={styles.buttonGroup}>
+          <div className={styles.button2} />
+        </div>
       </form>
-
-          <p style = {{marginTop: "20px"}}>Already have an account?  <button onClick = {closeModal} style = {{backgroundColor: "green", color: "white", padding: "5px 10px", border: "none", borderRadius: "5px", cursor: "pointer"}}>Login</button></p>
-    </div>
-    </div>
-      )}
     </div>
   );
-}
+};
 
-export default RegistrationForm;
+export default UserRegister;
