@@ -1,0 +1,340 @@
+.technician-tickets {
+    background-color: #0d0911;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+}
+
+.technician-tickets .div {
+    background-color: #0d0911;
+    height: 1080px;
+    overflow: hidden;
+    position: relative;
+    width: 1920px;
+}
+
+.technician-tickets .overlap {
+    background-color: #b892d880;
+    border-radius: 31px;
+    height: 205px;
+    left: 410px;
+    position: absolute;
+    top: 423px;
+    width: 1100px;
+}
+
+.technician-tickets .ticket-subject {
+    color: #ffffff;
+    font-family: "Noto Sans KR-Regular", Helvetica;
+    font-size: 24px;
+    font-weight: 400;
+    left: 62px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    top: 37px;
+    width: 297px;
+}
+
+.technician-tickets .button-group {
+    align-items: center;
+    display: flex;
+    gap: var(--size-space-400);
+    left: 932px;
+    position: absolute;
+    top: 40px;
+    width: 115px;
+}
+
+.technician-tickets .button {
+    all: unset;
+    align-items: center;
+    background-color: var(--buttons-secondary);
+    border: 1px solid;
+    border-color: var(--color-border-brand-default);
+    border-radius: var(--size-radius-200);
+    box-sizing: border-box;
+    display: flex;
+    flex: 1;
+    flex-grow: 1;
+    gap: var(--size-space-200);
+    justify-content: center;
+    overflow: hidden;
+    padding: var(--size-space-300);
+    position: relative;
+}
+
+.technician-tickets .text-wrapper {
+    all: unset;
+    box-sizing: border-box;
+    color: #ff0000;
+    font-family: var(--single-line-body-base-font-family);
+    font-size: var(--single-line-body-base-font-size);
+    font-style: var(--single-line-body-base-font-style);
+    font-weight: var(--single-line-body-base-font-weight);
+    letter-spacing: var(--single-line-body-base-letter-spacing);
+    line-height: var(--single-line-body-base-line-height);
+    margin-top: -1.00px;
+    position: relative;
+    white-space: nowrap;
+    width: fit-content;
+}
+
+.technician-tickets .button-wrapper {
+    all: unset;
+    align-items: center;
+    background-color: var(--buttons-secondary);
+    border: 1px solid;
+    border-color: var(--color-border-brand-default);
+    border-radius: var(--size-radius-200);
+    box-sizing: border-box;
+    display: flex;
+    gap: var(--size-space-200);
+    justify-content: center;
+    left: 932px;
+    overflow: hidden;
+    padding: var(--size-space-300);
+    position: absolute;
+    top: 125px;
+    width: 115px;
+}
+
+.technician-tickets .button-2 {
+    all: unset;
+    box-sizing: border-box;
+    color: var(--text);
+    font-family: var(--single-line-body-base-font-family);
+    font-size: var(--single-line-body-base-font-size);
+    font-style: var(--single-line-body-base-font-style);
+    font-weight: var(--single-line-body-base-font-weight);
+    letter-spacing: var(--single-line-body-base-letter-spacing);
+    line-height: var(--single-line-body-base-line-height);
+    margin-top: -1.00px;
+    position: relative;
+    white-space: nowrap;
+    width: fit-content;
+}
+
+.technician-tickets .overlap-group {
+    background-color: #b892d880;
+    border-radius: 31px;
+    height: 205px;
+    left: 410px;
+    position: absolute;
+    top: 965px;
+    width: 1100px;
+}
+
+.technician-tickets .ticket-subject-2 {
+    color: #ffffff;
+    font-family: "Noto Sans KR-Regular", Helvetica;
+    font-size: 24px;
+    font-weight: 400;
+    left: 62px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    top: 32px;
+    width: 297px;
+}
+
+.technician-tickets .div-wrapper {
+    all: unset;
+    align-items: center;
+    background-color: var(--buttons-secondary);
+    border: 1px solid;
+    border-color: var(--color-border-brand-default);
+    border-radius: var(--size-radius-200);
+    box-sizing: border-box;
+    display: flex;
+    gap: var(--size-space-200);
+    justify-content: center;
+    left: 932px;
+    overflow: hidden;
+    padding: var(--size-space-300);
+    position: absolute;
+    top: 56px;
+    width: 115px;
+}
+
+.technician-tickets .button-3 {
+    all: unset;
+    box-sizing: border-box;
+    color: #00ff1d;
+    font-family: var(--single-line-body-base-font-family);
+    font-size: var(--single-line-body-base-font-size);
+    font-style: var(--single-line-body-base-font-style);
+    font-weight: var(--single-line-body-base-font-weight);
+    letter-spacing: var(--single-line-body-base-letter-spacing);
+    line-height: var(--single-line-body-base-line-height);
+    margin-top: -1.00px;
+    position: relative;
+    white-space: nowrap;
+    width: fit-content;
+}
+
+.technician-tickets .overlap-2 {
+    background-color: #531d8180;
+    border-radius: 31px;
+    height: 205px;
+    left: 410px;
+    position: absolute;
+    top: 694px;
+    width: 1100px;
+}
+
+.technician-tickets .button-4 {
+    all: unset;
+    align-items: center;
+    background-color: var(--buttons-primary);
+    border: 1px solid;
+    border-color: var(--color-border-brand-default);
+    border-radius: var(--size-radius-200);
+    box-sizing: border-box;
+    display: flex;
+    flex: 1;
+    flex-grow: 1;
+    gap: var(--size-space-200);
+    justify-content: center;
+    overflow: hidden;
+    padding: var(--size-space-300);
+    position: relative;
+}
+
+.technician-tickets .button-5 {
+    all: unset;
+    align-items: center;
+    background-color: var(--buttons-primary);
+    border: 1px solid;
+    border-color: var(--color-border-brand-default);
+    border-radius: var(--size-radius-200);
+    box-sizing: border-box;
+    display: flex;
+    gap: var(--size-space-200);
+    justify-content: center;
+    left: 932px;
+    overflow: hidden;
+    padding: var(--size-space-300);
+    position: absolute;
+    top: 125px;
+    width: 115px;
+}
+
+.technician-tickets .overlap-3 {
+    background-color: #531d8180;
+    border-radius: 31px;
+    height: 205px;
+    left: 410px;
+    position: absolute;
+    top: 152px;
+    width: 1100px;
+}
+
+.technician-tickets .button-group-2 {
+    align-items: center;
+    display: flex;
+    gap: var(--size-space-400);
+    left: 932px;
+    position: absolute;
+    top: 41px;
+    width: 115px;
+}
+
+.technician-tickets .button-6 {
+    all: unset;
+    align-items: center;
+    background-color: var(--buttons-primary);
+    border: 1px solid;
+    border-color: var(--color-border-brand-default);
+    border-radius: var(--size-radius-200);
+    box-sizing: border-box;
+    display: flex;
+    gap: var(--size-space-200);
+    justify-content: center;
+    left: 932px;
+    overflow: hidden;
+    padding: var(--size-space-300);
+    position: absolute;
+    top: 126px;
+    width: 115px;
+}
+
+.technician-tickets .group {
+    height: 96px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 1928px;
+}
+
+.technician-tickets .navbar {
+    background-color: #0d0911;
+    border: 1px solid;
+    border-color: #b892d8;
+    height: 98px;
+    left: -1px;
+    position: relative;
+    top: -1px;
+    width: 1922px;
+}
+
+.technician-tickets .text-wrapper-2 {
+    color: #ffffff;
+    font-family: "Noto Sans KR-Regular", Helvetica;
+    font-size: 24px;
+    font-weight: 400;
+    left: 36px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    top: 30px;
+    width: 154px;
+}
+
+.technician-tickets .text-wrapper-3 {
+    color: #ffffff;
+    font-family: "Noto Sans KR-Regular", Helvetica;
+    font-size: 24px;
+    font-weight: 400;
+    left: 1725px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    top: 30px;
+    width: 121px;
+}
+
+.technician-tickets .text-wrapper-4 {
+    color: #ffffff;
+    font-family: "Noto Sans KR-Regular", Helvetica;
+    font-size: 24px;
+    font-weight: 400;
+    left: 1529px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    top: 30px;
+    width: 136px;
+}
+
+.technician-tickets .text-wrapper-5 {
+    color: #ffffff;
+    font-family: "Noto Sans KR-Regular", Helvetica;
+    font-size: 24px;
+    font-weight: 400;
+    left: 1399px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    top: 30px;
+    width: 69px;
+}
+
+.technician-tickets .user-instance {
+    height: 40px !important;
+    left: 1868px !important;
+    position: absolute !important;
+    top: 28px !important;
+    width: 40px !important;
+}
