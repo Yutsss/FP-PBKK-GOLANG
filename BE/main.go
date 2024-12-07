@@ -66,8 +66,10 @@ func main() {
 
 	middlewares := config.MiddlewareDependencyInjection()
 	userController := config.UserDependencyInjection(db)
+	ticketController := config.TicketDependencyInjection(db)
 
 	route.UserRouter(server, userController, middlewares)
+	route.TicketRouter(server, ticketController, middlewares)
 
 	err := server.Run(serve)
 
