@@ -1,5 +1,5 @@
 import React from 'react';
-import "./checkTicket.css";
+import styles from "./checkTicket.css";
 
 const UserCheckTicketsLoggedIn = () => {
   const ticketData = [
@@ -11,7 +11,6 @@ const UserCheckTicketsLoggedIn = () => {
 
   return (
     <div className="userCheckTicketsLoggedIn" style={styles.container}>
-      <Header />
       {ticketData.map((ticket, index) => (
         <Ticket key={index} status={ticket.status} />
       ))}

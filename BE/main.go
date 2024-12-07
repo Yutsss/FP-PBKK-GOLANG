@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"github.com/Yutsss/FP-PBKK-GOLANG/BE/command"
 	"github.com/Yutsss/FP-PBKK-GOLANG/BE/config"
 	"github.com/Yutsss/FP-PBKK-GOLANG/BE/constants"
@@ -13,7 +14,24 @@ import (
 )
 
 func main() {
-	err := godotenv.Load(".env")
+	var env string
+	if os.Getenv("GO_ENV") == constants.ENUM_ENV_DEVELOPMENT {
+		err := godotenv.Load(".env")
+		if err != nil {
+			log.Fatalf("Error loading env file")
+		}
+		env = constants.ENUM_ENV_DEVELOPMENT
+	} else if os.Getenv("GO_ENV") == constants.ENUM_ENV_PRODUCTION {
+		err := godotenv.Load(".env.production")
+		if err != nil {
+			log.Fatalf("Error loading env file")
+		}
+		env = constants.ENUM_ENV_PRODUCTION
+	} else {
+		panic("Invalid GO_ENV")
+	}
+
+	fmt.Printf("Environment is %s\n", env)
 
 	db := config.ConnectDB()
 	defer config.CloseDBConnection(db)
@@ -25,11 +43,6 @@ func main() {
 		}
 	}
 
-	if err != nil {
-		log.Fatalf("Error loading env file")
-	}
-
-	var env = os.Getenv("APP_ENV")
 	var serve string
 
 	port := os.Getenv("APP_PORT")
@@ -37,24 +50,28 @@ func main() {
 		port = "8080"
 	}
 
-	if env == constants.ENUM_ENV_DEVELOPMENT {
+	switch env {
+	case constants.ENUM_ENV_DEVELOPMENT:
 		gin.SetMode(gin.DebugMode)
 		serve = "localhost:" + port
-	} else if env == constants.ENUM_ENV_PRODUCTION {
+	case constants.ENUM_ENV_PRODUCTION:
 		gin.SetMode(gin.ReleaseMode)
 		serve = ":" + port
-	} else {
-		panic("Invalid APP_ENV")
+	default:
+		panic("Unexpected environment value")
 	}
 
 	server := gin.Default()
 	server.Use(middleware.CORS())
 
+	middlewares := config.MiddlewareDependencyInjection()
 	userController := config.UserDependencyInjection(db)
+	ticketController := config.TicketDependencyInjection(db)
 
-	route.UserRouter(server, userController)
+	route.UserRouter(server, userController, middlewares)
+	route.TicketRouter(server, ticketController, middlewares)
 
-	err = server.Run(serve)
+	err := server.Run(serve)
 
 	if err != nil {
 		log.Fatalf("Failed to run server: %v", err)
