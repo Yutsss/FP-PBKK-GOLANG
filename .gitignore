@@ -1,4 +1,5 @@
 BE/.env
 BE/.env.production
+BE/backend
 FE/.env
 FE/fe/node_modules
