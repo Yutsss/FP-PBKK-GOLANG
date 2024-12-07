@@ -5,6 +5,9 @@ import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import "./App.css";
 
 function App() {
+  // Example state for user login status and role
+  const [user, setUser] = useState({ loggedIn: false, role: 'guest' }); // 'guest' is the default
+
   return (
     <Router>
       {" "}
@@ -33,3 +36,4 @@ function App() {
 }
 
 export default App;
+
