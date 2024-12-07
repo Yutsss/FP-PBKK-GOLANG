@@ -27,7 +27,7 @@
 }
 
 .header .overlap-group {
-  background-color: #0d0911;
+  background-color: var(--background);
   border: 2px solid;
   border-color: #b892d8;
   height: 80px;
@@ -63,7 +63,7 @@
   width: 168px;
 }
 
-.header .div {
+.header .ticket-button {
   color: #ffffff;
   font-family: "Noto Sans KR-Regular", Helvetica;
   font-size: 20px;

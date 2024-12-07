@@ -50,14 +50,14 @@
 .form {
     background-color: var(--form-background); /* Use the background color variable */
     border-radius: var(--size-radius-200); /* Use border radius variable */
-    width: 1000px;
+    width: 750px;
     padding: var(--size-space-400);
     box-sizing: border-box;
     position: relative;
     max-width: 100%;
     margin-left: 8%;
     margin-top: 50px;
-    height: 950px;
+    height: 733px;
 }
 
 /* Header Styling */
@@ -151,7 +151,7 @@
     padding: var(--size-space-400);
 }
 
-.form .ticket-body, .form .email, .form .kategori, .form .ticket-subject {
+.form .ticket-body, .form .kategori, .form .ticket-subject {
     margin-bottom: var(--size-space-400); /* Uniform margin between sections */
     
 }
@@ -182,5 +182,6 @@
 .form input, .form select, .form textarea {
     background-color: var(--color-background-default-default); /* Use default background color */
     padding: var(--size-space-300) var(--size-space-400);
-    width: 100%;
+    border-radius: 8px; /* Optional: Rounded corners for inputs */
+    width: 300px;
 }
