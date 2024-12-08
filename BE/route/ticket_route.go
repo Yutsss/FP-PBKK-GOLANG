@@ -12,5 +12,6 @@ func TicketRouter(route *gin.Engine, ticketController controller.TicketControlle
 		ticketRoute.GET("/all", middlewares["authMiddleware"], middlewares["adminRoleMiddleware"], ticketController.GetAll)
 		ticketRoute.GET("/user", middlewares["authMiddleware"], middlewares["userRoleMiddleware"], ticketController.GetByUserId)
 		ticketRoute.GET("/:ticket_id", middlewares["authMiddleware"], middlewares["allRoleMiddleware"], ticketController.GetById)
+		ticketRoute.PUT("/:ticket_id/assign/:technician_id", middlewares["authMiddleware"], middlewares["adminRoleMiddleware"], ticketController.AssignById)
 	}
 }

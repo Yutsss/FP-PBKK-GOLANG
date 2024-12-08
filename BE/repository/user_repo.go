@@ -13,7 +13,7 @@ type (
 	UserRepository interface {
 		Create(ctx context.Context, tx *gorm.DB, data dto.UserRegisterRequest) (entity.User, errorUtils.CustomError)
 		FindByEmail(ctx context.Context, tx *gorm.DB, email string) (entity.User, errorUtils.CustomError)
-		FindById(ctx context.Context, tx *gorm.DB, id uint) (entity.User, errorUtils.CustomError)
+		FindById(ctx context.Context, tx *gorm.DB, id int64) (entity.User, errorUtils.CustomError)
 		FindAll(ctx context.Context, tx *gorm.DB) ([]entity.User, errorUtils.CustomError)
 	}
 
@@ -70,7 +70,7 @@ func (r *userRepository) FindByEmail(ctx context.Context, tx *gorm.DB, email str
 	return user, nil
 }
 
-func (r *userRepository) FindById(ctx context.Context, tx *gorm.DB, id uint) (entity.User, errorUtils.CustomError) {
+func (r *userRepository) FindById(ctx context.Context, tx *gorm.DB, id int64) (entity.User, errorUtils.CustomError) {
 	if tx == nil {
 		tx = r.db
 	}

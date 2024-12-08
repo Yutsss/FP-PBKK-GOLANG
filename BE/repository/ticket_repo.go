@@ -12,10 +12,12 @@ import (
 
 type (
 	TicketRepository interface {
+		ExtractContext(ctx context.Context) (*gorm.DB, errorUtils.CustomError)
 		Create(ctx context.Context, tx *gorm.DB, data dto.CreateTicketRequest) (entity.Ticket, errorUtils.CustomError)
 		FindAll(ctx context.Context, tx *gorm.DB) ([]entity.Ticket, errorUtils.CustomError)
 		FindById(ctx context.Context, tx *gorm.DB, id uuid.UUID) (entity.Ticket, errorUtils.CustomError)
-		FindByUserID(ctx context.Context, tx *gorm.DB, userID uint) ([]entity.Ticket, errorUtils.CustomError)
+		FindByUserId(ctx context.Context, tx *gorm.DB, userID int64) ([]entity.Ticket, errorUtils.CustomError)
+		UpdateById(ctx context.Context, tx *gorm.DB, id uuid.UUID, data entity.Ticket) (entity.Ticket, errorUtils.CustomError)
 	}
 
 	ticketRepository struct {
@@ -27,6 +29,16 @@ func NewTicketRepository(db *gorm.DB) TicketRepository {
 	return &ticketRepository{
 		db: db,
 	}
+}
+
+func (r *ticketRepository) ExtractContext(ctx context.Context) (*gorm.DB, errorUtils.CustomError) {
+	tx := r.db.WithContext(ctx)
+
+	if tx == nil {
+		return nil, errorUtils.ErrInternalServer
+	}
+
+	return tx, nil
 }
 
 func (r *ticketRepository) Create(ctx context.Context, tx *gorm.DB, data dto.CreateTicketRequest) (entity.Ticket, errorUtils.CustomError) {
@@ -90,7 +102,7 @@ func (r *ticketRepository) FindById(ctx context.Context, tx *gorm.DB, id uuid.UU
 	return ticket, nil
 }
 
-func (r *ticketRepository) FindByUserID(ctx context.Context, tx *gorm.DB, userID uint) ([]entity.Ticket, errorUtils.CustomError) {
+func (r *ticketRepository) FindByUserId(ctx context.Context, tx *gorm.DB, userID int64) ([]entity.Ticket, errorUtils.CustomError) {
 	if tx == nil {
 		tx = r.db
 	}
@@ -108,4 +120,20 @@ func (r *ticketRepository) FindByUserID(ctx context.Context, tx *gorm.DB, userID
 	}
 
 	return tickets, nil
+}
+
+func (r *ticketRepository) UpdateById(ctx context.Context, tx *gorm.DB, id uuid.UUID, data entity.Ticket) (entity.Ticket, errorUtils.CustomError) {
+	if tx == nil {
+		tx = r.db
+	}
+
+	var ticket entity.Ticket
+
+	err := tx.WithContext(ctx).Where("id = ?", id).Updates(data).Error
+
+	if err != nil {
+		return entity.Ticket{}, errorUtils.ErrInternalServer
+	}
+
+	return ticket, nil
 }

@@ -1,6 +1,7 @@
 package entity
 
 type Admin struct {
-	ID     uint `gorm:"primaryKey;autoIncrement" json:"id"`
-	UserID uint `gorm:"type:int;not null" json:"user_id"`
+	ID      int64    `gorm:"primaryKey;autoIncrement" json:"id"`
+	UserID  int64    `gorm:"type:int;not null" json:"user_id"`
+	Tickets []Ticket `gorm:"foreignKey:AdminID;references:ID" json:"tickets"`
 }

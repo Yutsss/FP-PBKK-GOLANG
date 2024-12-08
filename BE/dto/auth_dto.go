@@ -8,13 +8,13 @@ type (
 	}
 
 	JwtCustomClaims struct {
-		UserID uint   `json:"user_id"`
+		UserID int64  `json:"user_id"`
 		Role   string `json:"role"`
 		jwt.RegisteredClaims
 	}
 
 	AuthPayload struct {
-		UserID uint   `json:"user_id"`
+		UserID int64  `json:"user_id"`
 		Role   string `json:"role"`
 	}
 )
