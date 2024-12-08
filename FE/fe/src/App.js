@@ -5,6 +5,8 @@ import UserCheckTickets from "./userLogin";
 import UserCheckTicketsLoggedIn from "./checkTicket";
 import TechHome from "./tech-home";
 import TechnicianTickets from "./tech-tickets";
+import AdminHome from "./admin-home";
+import AdminTicket from "./admin-ticket";
 import {
   BrowserRouter as Router,
   Routes,
@@ -100,6 +102,29 @@ function App() {
               Technician Tickets
             </Link>
 
+            <Link
+              to="/admin-home"
+              style={{
+                color: "white",
+                padding: "5px 10px",
+                borderRadius: "5px",
+                textDecoration: "none",
+              }}
+            >
+              Admin Home
+            </Link>
+            <Link
+              to="/admin-tickets"
+              style={{
+                color: "white",
+                padding: "5px 10px",
+                borderRadius: "5px",
+                textDecoration: "none",
+              }}
+            >
+              Admin Tickets
+            </Link>
+
             {/* Conditional rendering based on login state */}
             {!user.loggedIn ? (
               <Link
@@ -146,6 +171,8 @@ function App() {
         <Route path="/check-tickets" element={<UserCheckTicketsLoggedIn />} />
         <Route path="/tech-home" element={<TechHome />} />
         <Route path="/tech-tickets" element={<TechnicianTickets />} />
+        <Route path="/admin-home" element={<AdminHome />} />
+        <Route path="/admin-tickets" element={<AdminTicket />} />
       </Routes>
     </div>
   );

@@ -1,0 +1,100 @@
+.admin-technician {
+    background-color: transparent;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+}
+
+.admin-technician .group-wrapper {
+    border: 1px solid;
+    border-color: transparent;
+    height: 836px;
+    overflow: hidden;
+    width: 804px;
+}
+
+.admin-technician .group {
+    height: 836px;
+    width: 812px;
+}
+
+.admin-technician .overlap-group {
+    background-color: #360c5b;
+    border-radius: 31px;
+    height: 836px;
+    position: relative;
+    width: 804px;
+}
+
+.admin-technician .based-on-the {
+    color: #ffffff;
+    font-family: "Noto Sans KR-Regular", Helvetica;
+    font-size: 24px;
+    font-weight: 400;
+    left: 256px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    text-align: center;
+    top: 24px;
+    width: 297px;
+}
+
+.admin-technician .overlap {
+    background-color: #b892d880;
+    border-radius: 31px;
+    height: 205px;
+    left: 40px;
+    position: absolute;
+    top: 370px;
+    width: 723px;
+}
+
+.admin-technician .technician-name {
+    color: #ffffff;
+    font-family: "Noto Sans KR-Regular", Helvetica;
+    font-size: 24px;
+    font-weight: 400;
+    left: 213px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    text-align: center;
+    top: 33px;
+    width: 297px;
+}
+
+.admin-technician .technician-name-wrapper {
+    background-color: #531d8180;
+    border-radius: 31px;
+    height: 205px;
+    left: 40px;
+    position: absolute;
+    top: 153px;
+    width: 723px;
+}
+
+.admin-technician .text-wrapper {
+    color: #ffffff;
+    font-family: "Noto Sans KR-Regular", Helvetica;
+    font-size: 24px;
+    font-weight: 400;
+    left: 213px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    text-align: center;
+    top: 40px;
+    width: 297px;
+}
+
+.admin-technician .div-wrapper {
+    background-color: #531d8180;
+    border-radius: 31px;
+    height: 205px;
+    left: 40px;
+    position: absolute;
+    top: 587px;
+    width: 723px;
+}
