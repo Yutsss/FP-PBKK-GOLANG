@@ -1,0 +1,303 @@
+.admin-ticket {
+    background-color: #0d0911;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+}
+
+.admin-ticket .div {
+    background-color: #0d0911;
+    height: 1080px;
+    overflow: hidden;
+    position: relative;
+    width: 1920px;
+}
+
+.admin-ticket .group {
+    height: 205px;
+    left: 410px;
+    position: absolute;
+    top: 965px;
+    width: 1102px;
+}
+
+.admin-ticket .overlap-group {
+    background-color: #b892d880;
+    border-radius: 31px;
+    height: 205px;
+    position: relative;
+    width: 1100px;
+}
+
+.admin-ticket .ticket-subject {
+    color: #ffffff;
+    font-family: "Noto Sans KR-Regular", Helvetica;
+    font-size: 24px;
+    font-weight: 400;
+    left: 62px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    top: 33px;
+    width: 297px;
+}
+
+.admin-ticket .button {
+    all: unset;
+    align-items: center;
+    background-color: var(--buttons-secondary);
+    border: 1px solid;
+    border-color: var(--color-border-brand-default);
+    border-radius: var(--size-radius-200);
+    box-sizing: border-box;
+    display: flex;
+    gap: var(--size-space-200);
+    justify-content: center;
+    left: 932px;
+    overflow: hidden;
+    padding: var(--size-space-300);
+    position: absolute;
+    top: 91px;
+    width: 115px;
+}
+
+.admin-ticket .text-wrapper {
+    all: unset;
+    box-sizing: border-box;
+    color: #ff0000;
+    font-family: var(--single-line-body-base-font-family);
+    font-size: var(--single-line-body-base-font-size);
+    font-style: var(--single-line-body-base-font-style);
+    font-weight: var(--single-line-body-base-font-weight);
+    letter-spacing: var(--single-line-body-base-letter-spacing);
+    line-height: var(--single-line-body-base-line-height);
+    margin-top: -1.00px;
+    position: relative;
+    white-space: nowrap;
+    width: fit-content;
+}
+
+.admin-ticket .overlap-wrapper {
+    height: 205px;
+    left: 410px;
+    position: absolute;
+    top: 694px;
+    width: 1102px;
+}
+
+.admin-ticket .overlap {
+    background-color: #531d8180;
+    border-radius: 31px;
+    height: 205px;
+    position: relative;
+    width: 1100px;
+}
+
+.admin-ticket .button-group {
+    align-items: center;
+    display: flex;
+    gap: var(--size-space-400);
+    left: 932px;
+    position: absolute;
+    top: 83px;
+    width: 115px;
+}
+
+.admin-ticket .button-wrapper {
+    all: unset;
+    align-items: center;
+    background-color: var(--buttons-primary);
+    border: 1px solid;
+    border-color: var(--color-border-brand-default);
+    border-radius: var(--size-radius-200);
+    box-sizing: border-box;
+    display: flex;
+    flex: 1;
+    flex-grow: 1;
+    gap: var(--size-space-200);
+    justify-content: center;
+    overflow: hidden;
+    padding: var(--size-space-300);
+    position: relative;
+}
+
+.admin-ticket .button-2 {
+    all: unset;
+    box-sizing: border-box;
+    color: #00ff1d;
+    font-family: var(--single-line-body-base-font-family);
+    font-size: var(--single-line-body-base-font-size);
+    font-style: var(--single-line-body-base-font-style);
+    font-weight: var(--single-line-body-base-font-weight);
+    letter-spacing: var(--single-line-body-base-letter-spacing);
+    line-height: var(--single-line-body-base-line-height);
+    margin-top: -1.00px;
+    position: relative;
+    white-space: nowrap;
+    width: fit-content;
+}
+
+.admin-ticket .overlap-group-wrapper {
+    height: 205px;
+    left: 410px;
+    position: absolute;
+    top: 423px;
+    width: 1102px;
+}
+
+.admin-ticket .overlap-2 {
+    border-radius: 31px;
+    height: 205px;
+    position: relative;
+    width: 1100px;
+}
+
+.admin-ticket .ticket-subject-2 {
+    color: #ffffff;
+    font-family: "Noto Sans KR-Regular", Helvetica;
+    font-size: 24px;
+    font-weight: 400;
+    left: 62px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    top: 38px;
+    width: 297px;
+}
+
+.admin-ticket .div-wrapper {
+    background-color: #b892d880;
+    border-radius: 31px;
+    height: 205px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 1100px;
+}
+
+.admin-ticket .button-3 {
+    all: unset;
+    align-items: center;
+    background-color: var(--buttons-secondary);
+    border: 1px solid;
+    border-color: var(--color-border-brand-default);
+    border-radius: var(--size-radius-200);
+    box-sizing: border-box;
+    display: flex;
+    gap: var(--size-space-200);
+    justify-content: center;
+    left: 932px;
+    overflow: hidden;
+    padding: var(--size-space-300);
+    position: relative;
+    top: 83px;
+    width: 115px;
+}
+
+.admin-ticket .group-2 {
+    height: 205px;
+    left: 410px;
+    position: absolute;
+    top: 152px;
+    width: 1102px;
+}
+
+.admin-ticket .button-group-wrapper {
+    background-color: #531d8180;
+    border-radius: 31px;
+    height: 205px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 1100px;
+}
+
+.admin-ticket .button-group-2 {
+    align-items: center;
+    display: flex;
+    gap: var(--size-space-400);
+    left: 932px;
+    position: relative;
+    top: 88px;
+    width: 115px;
+}
+
+.admin-ticket .navbar-wrapper {
+    height: 96px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 1928px;
+}
+
+.admin-ticket .navbar {
+    background-color: #0d0911;
+    border: 1px solid;
+    border-color: #b892d8;
+    height: 98px;
+    left: -1px;
+    position: relative;
+    top: -1px;
+    width: 1922px;
+}
+
+.admin-ticket .text-wrapper-2 {
+    color: #ffffff;
+    font-family: "Noto Sans KR-Regular", Helvetica;
+    font-size: 24px;
+    font-weight: 400;
+    left: 36px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    top: 30px;
+    width: 154px;
+}
+
+.admin-ticket .text-wrapper-3 {
+    color: #ffffff;
+    font-family: "Noto Sans KR-Regular", Helvetica;
+    font-size: 24px;
+    font-weight: 400;
+    left: 1774px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    top: 30px;
+    width: 84px;
+}
+
+.admin-ticket .text-wrapper-4 {
+    color: #ffffff;
+    font-family: "Noto Sans KR-Regular", Helvetica;
+    font-size: 24px;
+    font-weight: 400;
+    left: 1532px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    top: 30px;
+    width: 157px;
+}
+
+.admin-ticket .text-wrapper-5 {
+    color: #ffffff;
+    font-family: "Noto Sans KR-Regular", Helvetica;
+    font-size: 24px;
+    font-weight: 400;
+    left: 1374px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    top: 30px;
+    width: 73px;
+}
+
+.admin-ticket .user-instance {
+    height: 40px !important;
+    left: 1868px !important;
+    position: absolute !important;
+    top: 28px !important;
+    width: 40px !important;
+}
