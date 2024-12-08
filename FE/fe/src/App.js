@@ -1,6 +1,7 @@
-import React, { useState } from "react";
-import UserRegister from "./Regist";
+import React from "react";
+import RegistrationForm from "./Regist";
 import ServiceDesk from "./serviceDesk";
+<<<<<<< HEAD
 import UserCheckTickets from "./userLogin";
 import UserCheckTicketsLoggedIn from "./checkTicket";
 import TechHome from "./tech-home";
@@ -14,12 +15,16 @@ import {
   Link,
   useNavigate,
 } from "react-router-dom";
+=======
+import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import "./App.css";
+>>>>>>> 79d91eb3fabde4e60b3855a272793d49f56542bd
 
 function App() {
   // Example state for user login status and role
-  const [user, setUser] = useState({ loggedIn: false, role: "guest" }); // 'guest' is the default
-  const navigate = useNavigate(); // Use React Router's navigate function
+  const [user, setUser] = useState({ loggedIn: false, role: 'guest' }); // 'guest' is the default
 
+<<<<<<< HEAD
   // Function to handle "Check Tickets" logic
   const handleCheckTickets = () => {
     if (user.loggedIn) {
@@ -179,11 +184,34 @@ function App() {
 }
 
 export default function AppWrapper() {
+=======
+>>>>>>> 79d91eb3fabde4e60b3855a272793d49f56542bd
   return (
     <Router>
       {" "}
-      {/* Wrap App component in Router */}
-      <App />
+      {/*added a router to use the Link component*/}
+      <div>
+        <header>
+          <div className="header">
+            <div className="overlap-group">
+              <div className="register"> Register</div>
+              <div className="text-wrapper">Check tickets</div>
+              <div className="div">Create a Ticket</div>
+              <div className="text-wrapper-2">Tech Support</div>
+            </div>
+          </div>
+        </header>
+
+        <Routes>
+          {" "}
+          {/* Added routes component*/}
+          <Route path="/" element={<ServiceDesk />} />
+          <Route path="/register" element={<RegistrationForm />} />
+        </Routes>
+      </div>
     </Router>
   );
 }
+
+export default App;
+

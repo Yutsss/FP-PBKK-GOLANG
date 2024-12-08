@@ -47,6 +47,7 @@ const UserRegister = () => {
       <form onSubmit={handleSubmit} className={styles.formRegister}>
         <div className={styles.inputField}>
           <div className={styles.label}>Name</div>
+          <div className={styles.input}>
             <input
               type="text"
               name="name"
@@ -55,10 +56,12 @@ const UserRegister = () => {
               className={styles.value}
               required
             />
+          </div>
         </div>
 
         <div className={styles.inputField}>
           <div className={styles.label}>Email</div>
+          <div className={styles.input}>
             <input
               type="email"
               name="email"
@@ -67,10 +70,12 @@ const UserRegister = () => {
               className={styles.value}
               required
             />
+          </div>
         </div>
 
         <div className={styles.inputField}>
           <div className={styles.label}>Password</div>
+          <div className={styles.input}>
             <input
               type="password"
               name="password"
@@ -79,10 +84,12 @@ const UserRegister = () => {
               className={styles.value}
               required
             />
+          </div>
         </div>
 
         <div className={styles.inputField}>
           <div className={styles.label}>Phone Number</div>
+          <div className={styles.input}>
             <input
               type="tel"
               name="phoneNumber"
@@ -91,10 +98,12 @@ const UserRegister = () => {
               className={styles.value}
               required
             />
+          </div>
         </div>
 
         <div className={styles.inputField}>
           <div className={styles.label}>Address</div>
+          <div className={styles.input}>
             <textarea
               name="address"
               value={formData.address}
@@ -102,8 +111,20 @@ const UserRegister = () => {
               className={styles.value}
               required
             />
+          </div>
         </div>
-        <button className={styles.button}>Register</button>
+
+        <div className={styles.button}>
+          <div className={styles.star} />
+          <button type="submit" className={styles.button1}>
+            Register
+          </button>
+          <div className={styles.star} />
+        </div>
+
+        <div className={styles.buttonGroup}>
+          <div className={styles.button2} />
+        </div>
       </form>
     </div>
   );
