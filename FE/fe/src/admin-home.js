@@ -1,4 +1,5 @@
 import styles from './admin-home.module.css';
+import Rectangle from './Rectangle.svg';
 
 
 const AdminHome = () => {
@@ -11,7 +12,7 @@ const AdminHome = () => {
         				<div className={styles.groupParent}>
           					<div className={styles.groupWrapper}>
             						<div className={styles.groupWrapper}>
-              							<img className={styles.rectangleIcon} alt="" src="Rectangle.svg" />
+              							<img className={styles.rectangleIcon} alt="" src={Rectangle} />
               							<div className={styles.resolvedTickets}>Resolved Tickets</div>
             						</div>
           					</div>
@@ -19,21 +20,21 @@ const AdminHome = () => {
         				</div>
         				<div className={styles.groupContainer}>
           					<div className={styles.groupWrapper}>
-            						<img className={styles.rectangleIcon} alt="" src="Rectangle.svg" />
+            						<img className={styles.rectangleIcon} alt="" src={Rectangle} />
             						<div className={styles.resolvedTickets}>Unresolved Tickets</div>
           					</div>
           					<div className={styles.div1}>26</div>
         				</div>
         				<div className={styles.groupDiv}>
           					<div className={styles.groupWrapper}>
-            						<img className={styles.rectangleIcon} alt="" src="Rectangle.svg" />
+            						<img className={styles.rectangleIcon} alt="" src={Rectangle} />
             						<div className={styles.assignedTickets}>Assigned Tickets</div>
           					</div>
           					<div className={styles.div1}>56</div>
         				</div>
         				<div className={styles.groupParent1}>
           					<div className={styles.groupWrapper}>
-            						<img className={styles.rectangleIcon} alt="" src="Rectangle.svg" />
+            						<img className={styles.rectangleIcon} alt="" src={Rectangle} />
             						<div className={styles.unassignedTickets}>Unassigned Tickets</div>
           					</div>
           					<div className={styles.div3}>20</div>

@@ -113,18 +113,9 @@ const UserRegister = () => {
             />
           </div>
         </div>
-
-        <div className={styles.button}>
-          <div className={styles.star} />
-          <button type="submit" className={styles.button1}>
+          <button type="submit" className={styles.button}>
             Register
           </button>
-          <div className={styles.star} />
-        </div>
-
-        <div className={styles.buttonGroup}>
-          <div className={styles.button2} />
-        </div>
       </form>
     </div>
   );

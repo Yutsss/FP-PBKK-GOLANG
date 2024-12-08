@@ -1,5 +1,6 @@
 import React from 'react';
-import "./checkTicket.css";
+import styles from "./checkTicket.css";
+import { Header } from "./Header";
 
 const UserCheckTicketsLoggedIn = () => {
   const ticketData = [

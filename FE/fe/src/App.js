@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import RegistrationForm from "./Regist";
 import ServiceDesk from "./serviceDesk";
 import UserCheckTickets from "./userLogin";
@@ -7,26 +7,27 @@ import TechHome from "./tech-home";
 import TechnicianTickets from "./tech-tickets";
 import AdminHome from "./admin-home";
 import AdminTicket from "./admin-ticket";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Link,
-  useNavigate,
-} from "react-router-dom";
+// import {
+//   BrowserRouter as Router,
+//   Routes,
+//   Route,
+//   Link,
+//   useNavigate,
+// } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
 
 function App() {
   // Example state for user login status and role
   const [user, setUser] = useState({ loggedIn: false, role: 'guest' }); // 'guest' is the default
-
-  // Function to handle "Check Tickets" logic
-  const handleCheckTickets = () => {
-    if (user.loggedIn) {
-      navigate("/check-tickets"); // Navigate to check tickets if logged in
-    } else {
-      navigate("/login"); // Navigate to login page if not logged in
-    }
-  };
+  // const navigate = useNavigate();
+  // // Function to handle "Check Tickets" logic
+  // const handleCheckTickets = () => {
+  //   if (user.loggedIn) {
+  //     navigate("/check-tickets"); // Navigate to check tickets if logged in
+  //   } else {
+  //     navigate("/login"); // Navigate to login page if not logged in
+  //   }
+  // };
 
   return (
     <div style={{ backgroundColor: "#0d0911" }}>
@@ -159,20 +160,20 @@ function App() {
       </header>
 
       {/* Added routes component */}
-      <Routes>
-        <Route path="/" element={<ServiceDesk />} />
-        <Route path="/register" element={<UserRegister />} />
-        <Route path="/login" element={<UserCheckTickets />} />
-        {/* Dynamic routes for different user roles */}
-        <Route path="/user" element={<div>User Dashboard</div>} />
-        <Route path="/admin" element={<div>Admin Dashboard</div>} />
-        <Route path="/technician" element={<div>Technician Dashboard</div>} />
-        <Route path="/check-tickets" element={<UserCheckTicketsLoggedIn />} />
-        <Route path="/tech-home" element={<TechHome />} />
-        <Route path="/tech-tickets" element={<TechnicianTickets />} />
-        <Route path="/admin-home" element={<AdminHome />} />
-        <Route path="/admin-tickets" element={<AdminTicket />} />
-      </Routes>
+        <Routes>
+          <Route path="/" element={<ServiceDesk />} />
+          <Route path="/register" element={<RegistrationForm />} />
+          <Route path="/login" element={<UserCheckTickets />} />
+          {/* Dynamic routes for different user roles */}
+          <Route path="/user" element={<div>User Dashboard</div>} />
+          <Route path="/admin" element={<div>Admin Dashboard</div>} />
+          <Route path="/technician" element={<div>Technician Dashboard</div>} />
+          <Route path="/check-tickets" element={<UserCheckTicketsLoggedIn />} />
+          <Route path="/tech-home" element={<TechHome />} />
+          <Route path="/tech-tickets" element={<TechnicianTickets />} />
+          <Route path="/admin-home" element={<AdminHome />} />
+          <Route path="/admin-tickets" element={<AdminTicket />} />
+        </Routes>
     </div>
   );
 }
