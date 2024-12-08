@@ -5,6 +5,7 @@ import (
 	"github.com/Yutsss/FP-PBKK-GOLANG/BE/dto"
 	"github.com/Yutsss/FP-PBKK-GOLANG/BE/entity"
 	errorUtils "github.com/Yutsss/FP-PBKK-GOLANG/BE/utility/error"
+	"github.com/google/uuid"
 	"gorm.io/gorm"
 )
 
@@ -12,6 +13,7 @@ type (
 	TicketRepository interface {
 		Create(ctx context.Context, tx *gorm.DB, data dto.CreateTicketRequest) (entity.Ticket, errorUtils.CustomError)
 		FindAll(ctx context.Context, tx *gorm.DB) ([]entity.Ticket, errorUtils.CustomError)
+		FindById(ctx context.Context, tx *gorm.DB, id uuid.UUID) (entity.Ticket, errorUtils.CustomError)
 	}
 
 	ticketRepository struct {
@@ -60,4 +62,20 @@ func (r *ticketRepository) FindAll(ctx context.Context, tx *gorm.DB) ([]entity.T
 	}
 
 	return tickets, nil
+}
+
+func (r *ticketRepository) FindById(ctx context.Context, tx *gorm.DB, id uuid.UUID) (entity.Ticket, errorUtils.CustomError) {
+	if tx == nil {
+		tx = r.db
+	}
+
+	var ticket entity.Ticket
+
+	err := tx.WithContext(ctx).Where("id = ?", id).First(&ticket).Error
+
+	if err != nil {
+		return entity.Ticket{}, errorUtils.ErrInternalServer
+	}
+
+	return ticket, nil
 }

@@ -45,14 +45,20 @@ const (
 	MESSAGE_FAILED_LOGOUT_USER           = "Failed to logout user"
 	MESSAGE_FAILED_CREATE_TICKET         = "Failed to create ticket"
 	MESSAGE_FAILED_GET_ALL_TICKET        = "Failed to get all ticket"
+	MESSAGE_FAILED_GET_TICKET            = "Failed to get ticket"
+	MESSAGE_FAILED_ASSIGN_TICKET         = "Failed to assign ticket"
 )
 
 var (
-	ErrInternalServer       = NewCustomError(errors.New("Internal server error"), http.StatusInternalServerError)
-	ErrBadRequest           = NewCustomError(errors.New("Bad request"), http.StatusBadRequest)
-	ErrNotAllowed           = NewCustomError(errors.New("Not allowed"), http.StatusMethodNotAllowed)
-	ErrEmailAlreadyExist    = NewCustomError(errors.New("Email already exist"), http.StatusConflict)
-	ErrWrongEmailOrPassword = NewCustomError(errors.New("Wrong email or password"), http.StatusBadRequest)
-	ErrUnauthorized         = NewCustomError(errors.New("Unauthorized"), http.StatusUnauthorized)
-	ErrUserNotFound         = NewCustomError(errors.New("User not found"), http.StatusNotFound)
+	ErrInternalServer        = NewCustomError(errors.New("Internal server error"), http.StatusInternalServerError)
+	ErrBadRequest            = NewCustomError(errors.New("Bad request"), http.StatusBadRequest)
+	ErrNotAllowed            = NewCustomError(errors.New("Not allowed"), http.StatusMethodNotAllowed)
+	ErrEmailAlreadyExist     = NewCustomError(errors.New("Email already exist"), http.StatusConflict)
+	ErrWrongEmailOrPassword  = NewCustomError(errors.New("Wrong email or password"), http.StatusBadRequest)
+	ErrUnauthorized          = NewCustomError(errors.New("Unauthorized"), http.StatusUnauthorized)
+	ErrUserNotFound          = NewCustomError(errors.New("User not found"), http.StatusNotFound)
+	ErrTicketNotFound        = NewCustomError(errors.New("Ticket not found"), http.StatusNotFound)
+	ErrTicketAlreadyAssigned = NewCustomError(errors.New("Ticket already assigned"), http.StatusConflict)
+	ErrTechnicianNotReady    = NewCustomError(errors.New("Technician is not ready"), http.StatusConflict)
+	ErrTechnicianNotFound    = NewCustomError(errors.New("Technician not found"), http.StatusNotFound)
 )

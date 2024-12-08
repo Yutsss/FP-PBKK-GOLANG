@@ -10,7 +10,8 @@ func Migrate(db *gorm.DB) error {
 		&entity.User{},
 		&entity.Admin{},
 		&entity.Technician{},
-		&entity.Ticket{})
+		&entity.Ticket{},
+		&entity.Log{})
 
 	if err != nil {
 		return err

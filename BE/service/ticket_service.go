@@ -12,6 +12,7 @@ type (
 	TicketService interface {
 		Create(ctx context.Context, data dto.CreateTicketRequest) (dto.CreateTicketResponse, errorUtils.CustomError)
 		GetAll(ctx context.Context) (dto.GetAllTicketResponse, errorUtils.CustomError)
+		GetById(ctx context.Context, data dto.GetTicketByIDRequest) (dto.GetTicketByIDResponse, errorUtils.CustomError)
 	}
 
 	ticketService struct {
@@ -69,6 +70,33 @@ func (s *ticketService) GetAll(ctx context.Context) (dto.GetAllTicketResponse, e
 			Category:     ticket.Category,
 			Status:       ticket.Status,
 		})
+	}
+
+	return res, nil
+}
+
+func (s *ticketService) GetById(ctx context.Context, data dto.GetTicketByIDRequest) (dto.GetTicketByIDResponse, errorUtils.CustomError) {
+	if err := validation.Validate(data); err != nil {
+		return dto.GetTicketByIDResponse{}, err
+	}
+
+	ticket, err := s.ticketRepo.FindById(ctx, nil, data.ID)
+	if err != nil {
+		return dto.GetTicketByIDResponse{}, errorUtils.ErrInternalServer
+	}
+
+	res := dto.GetTicketByIDResponse{
+		Ticket: dto.TicketResponse{
+			ID:           ticket.ID,
+			UserID:       ticket.UserID,
+			AdminID:      ticket.AdminID,
+			LogID:        ticket.LogID,
+			TechnicianID: ticket.TechnicianID,
+			Title:        ticket.Title,
+			Description:  ticket.Description,
+			Category:     ticket.Category,
+			Status:       ticket.Status,
+		},
 	}
 
 	return res, nil

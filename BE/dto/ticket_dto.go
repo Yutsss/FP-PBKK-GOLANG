@@ -33,6 +33,14 @@ type (
 		Status      string    `json:"status"`
 	}
 
+	GetTicketByIDRequest struct {
+		ID uuid.UUID `json:"id" validate:"required"`
+	}
+
+	GetTicketByIDResponse struct {
+		Ticket TicketResponse `json:"ticket"`
+	}
+
 	GetAllTicketResponse struct {
 		Tickets []TicketResponse `json:"tickets"`
 	}
