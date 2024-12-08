@@ -6,6 +6,7 @@ import (
 	"github.com/Yutsss/FP-PBKK-GOLANG/BE/repository"
 	errorUtils "github.com/Yutsss/FP-PBKK-GOLANG/BE/utility/error"
 	"github.com/Yutsss/FP-PBKK-GOLANG/BE/validation"
+	"github.com/google/uuid"
 )
 
 type (
@@ -13,6 +14,7 @@ type (
 		Create(ctx context.Context, data dto.CreateTicketRequest) (dto.CreateTicketResponse, errorUtils.CustomError)
 		GetAll(ctx context.Context) (dto.GetAllTicketResponse, errorUtils.CustomError)
 		GetById(ctx context.Context, data dto.GetTicketByIDRequest) (dto.GetTicketByIDResponse, errorUtils.CustomError)
+		GetByUserId(ctx context.Context, data dto.GetTicketByUserIDRequest) (dto.GetTicketByUserIDResponse, errorUtils.CustomError)
 	}
 
 	ticketService struct {
@@ -85,6 +87,10 @@ func (s *ticketService) GetById(ctx context.Context, data dto.GetTicketByIDReque
 		return dto.GetTicketByIDResponse{}, errorUtils.ErrInternalServer
 	}
 
+	if ticket.ID == uuid.Nil {
+		return dto.GetTicketByIDResponse{}, errorUtils.ErrTicketNotFound
+	}
+
 	res := dto.GetTicketByIDResponse{
 		Ticket: dto.TicketResponse{
 			ID:           ticket.ID,
@@ -97,6 +103,37 @@ func (s *ticketService) GetById(ctx context.Context, data dto.GetTicketByIDReque
 			Category:     ticket.Category,
 			Status:       ticket.Status,
 		},
+	}
+
+	return res, nil
+}
+
+func (s *ticketService) GetByUserId(ctx context.Context, data dto.GetTicketByUserIDRequest) (dto.GetTicketByUserIDResponse, errorUtils.CustomError) {
+	if err := validation.Validate(data); err != nil {
+		return dto.GetTicketByUserIDResponse{}, err
+	}
+
+	tickets, err := s.ticketRepo.FindByUserID(ctx, nil, data.UserID)
+	if err != nil {
+		return dto.GetTicketByUserIDResponse{}, errorUtils.ErrInternalServer
+	}
+
+	res := dto.GetTicketByUserIDResponse{
+		Tickets: make([]dto.TicketResponse, 0),
+	}
+
+	for _, ticket := range tickets {
+		res.Tickets = append(res.Tickets, dto.TicketResponse{
+			ID:           ticket.ID,
+			UserID:       ticket.UserID,
+			AdminID:      ticket.AdminID,
+			LogID:        ticket.LogID,
+			TechnicianID: ticket.TechnicianID,
+			Title:        ticket.Title,
+			Description:  ticket.Description,
+			Category:     ticket.Category,
+			Status:       ticket.Status,
+		})
 	}
 
 	return res, nil

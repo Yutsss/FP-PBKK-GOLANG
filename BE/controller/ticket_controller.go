@@ -15,6 +15,7 @@ type (
 		Create(ctx *gin.Context)
 		GetAll(ctx *gin.Context)
 		GetById(ctx *gin.Context)
+		GetByUserId(ctx *gin.Context)
 	}
 
 	ticketController struct {
@@ -89,6 +90,31 @@ func (c *ticketController) GetById(ctx *gin.Context) {
 	if err != nil {
 		res := utility.ResponseError(errorUtils.MESSAGE_FAILED_GET_TICKET, err.Error(), err.Code())
 		ctx.AbortWithStatusJSON(res.Code, res)
+		return
+	}
+
+	res := utility.ResponseSuccess(successUtils.MESSAGE_SUCCESS_GET_TICKET, resData, http.StatusOK)
+
+	ctx.JSON(res.Code, res)
+}
+
+func (c *ticketController) GetByUserId(ctx *gin.Context) {
+	var req dto.GetTicketByUserIDRequest
+	var err errorUtils.CustomError
+
+	req.UserID = ctx.MustGet("user").(dto.AuthPayload).UserID
+
+	resData, err := c.ticketService.GetByUserId(ctx.Request.Context(), req)
+
+	if err != nil {
+		res := utility.ResponseError(errorUtils.MESSAGE_FAILED_GET_TICKET, err.Error(), err.Code())
+		ctx.AbortWithStatusJSON(res.Code, res)
+		return
+	}
+
+	if len(resData.Tickets) == 0 {
+		res := utility.ResponseSuccess(successUtils.MESSAGE_SUCCESS_GET_ALL_TICKET_EMPTY, resData, http.StatusOK)
+		ctx.JSON(res.Code, res)
 		return
 	}
 

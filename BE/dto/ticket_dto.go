@@ -44,4 +44,12 @@ type (
 	GetAllTicketResponse struct {
 		Tickets []TicketResponse `json:"tickets"`
 	}
+
+	GetTicketByUserIDRequest struct {
+		UserID uint `json:"user_id" validate:"required"`
+	}
+
+	GetTicketByUserIDResponse struct {
+		Tickets []TicketResponse `json:"tickets"`
+	}
 )
