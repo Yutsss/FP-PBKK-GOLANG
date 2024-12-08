@@ -1,0 +1,200 @@
+.rectangle {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    border-radius: 31px;
+    background-color: rgba(83, 29, 129, 0.5);
+    border: 1px solid #531d81;
+    box-sizing: border-box;
+    width: 1100px;
+    height: 733px;
+}
+.thereCurrentlyAre {
+    position: absolute;
+    top: 153px;
+    left: 435px;
+    text-align: left;
+    display: inline-block;
+    width: 229px;
+    height: 34px;
+}
+.heyAdmin {
+    position: absolute;
+    top: 66px;
+    left: 484px;
+    text-align: left;
+    display: inline-block;
+    width: 132px;
+    height: 34px;
+}
+.rectangleIcon {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    border-radius: 31px;
+    width: 205px;
+    height: 205px;
+}
+.resolvedTickets {
+    position: absolute;
+    top: 11px;
+    left: 16px;
+    display: inline-block;
+    width: 172px;
+    height: 34px;
+}
+.groupWrapper {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 205px;
+    height: 205px;
+}
+.div {
+    position: absolute;
+    top: 103px;
+    left: 67px;
+    font-size: 40px;
+    display: inline-block;
+    width: 70px;
+    height: 49px;
+}
+.groupParent {
+    position: absolute;
+    top: 264px;
+    left: 855px;
+    width: 205px;
+    height: 205px;
+}
+.div1 {
+    position: absolute;
+    top: 103px;
+    left: 69px;
+    font-size: 40px;
+    display: inline-block;
+    width: 67px;
+    height: 49px;
+}
+.groupContainer {
+    position: absolute;
+    top: 264px;
+    left: 579px;
+    width: 205px;
+    height: 205px;
+}
+.assignedTickets {
+    position: absolute;
+    top: 17px;
+    left: 17px;
+    display: inline-block;
+    width: 172px;
+    height: 34px;
+}
+.groupDiv {
+    position: absolute;
+    top: 264px;
+    left: 303px;
+    width: 205px;
+    height: 205px;
+}
+.unassignedTickets {
+    position: absolute;
+    top: 17px;
+    left: 17px;
+    display: inline-block;
+    width: 172px;
+    height: 22px;
+}
+.div3 {
+    position: absolute;
+    top: 103px;
+    left: 69px;
+    font-size: 40px;
+    display: inline-block;
+    width: 68px;
+    height: 49px;
+}
+.groupParent1 {
+    position: absolute;
+    top: 264px;
+    left: 27px;
+    width: 205px;
+    height: 205px;
+}
+.rectangleParent {
+    position: absolute;
+    top: 213px;
+    left: 410px;
+    width: 1100px;
+    height: 733px;
+}
+.groupChild {
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    background-color: #0d0911;
+    border: 1px solid #b892d8;
+    box-sizing: border-box;
+    width: 1922px;
+    height: 98px;
+}
+.techSupport {
+    position: absolute;
+    top: 30px;
+    left: 36px;
+    display: inline-block;
+    width: 154px;
+    height: 34px;
+}
+.admin {
+    position: absolute;
+    top: 30px;
+    left: 1774px;
+    display: inline-block;
+    width: 84px;
+    height: 34px;
+}
+.assignTickets {
+    position: absolute;
+    top: 30px;
+    left: 1532px;
+    display: inline-block;
+    width: 157px;
+    height: 34px;
+}
+.home {
+    position: absolute;
+    top: 30px;
+    left: 1374px;
+    display: inline-block;
+    width: 73px;
+    height: 34px;
+}
+.userIcon {
+    position: absolute;
+    top: 28px;
+    left: 1868px;
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+}
+.rectangleParent3 {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 1920px;
+    height: 96px;
+    text-align: left;
+}
+.adminHome {
+    width: 100%;
+    position: relative;
+    background-color: #0d0911;
+    height: 1080px;
+    overflow: hidden;
+    text-align: center;
+    font-size: 24px;
+    color: #fff;
+    font-family: 'Noto Sans KR';
+}
+

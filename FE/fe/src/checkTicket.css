@@ -1,106 +1,106 @@
 .userCheckTicketsLoggedIn {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background: #0d0911;
+}
+
+.header {
     width: 100%;
-    height: 100%;
-    position: relative;
-    background: #0d0911;
-  }
-  
-  .header {
-      width: 100%;
-      height: 96px;
-      position: absolute;
-      left: 0;
-      top: 0;
-      border-bottom: 1px solid #b892d8;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0 36px; /* Add padding for better spacing */
-      box-sizing: border-box;
-  }
-  
-  .headerText{
-    color: white;
-    font-size: 24px;
-    font-family: 'Noto Sans KR', sans-serif; /* Added sans-serif fallback */
-    font-weight: 400;
-  }
-  /* ... (Rest of your CSS styles, converted similarly) */
-  .ticketContainer {
-      width: 1100px;
-      height: 205px;
-      position: absolute;
-      left: 50%;
-      top: 152px; /* Adjusted top position */
-      transform: translateX(-50%);
-      margin-bottom: 30px;
-    }
-  
-  
-  .ticketRectangle {
-    width: 100%;
-    height: 100%;
+    height: 96px;
     position: absolute;
-    background: rgba(83, 29, 129, 0.5);
-    border-radius: 31px;
-  }
-  
-  .ticketText {
-    width: 297px;
-    height: 139px;
+    left: 0;
+    top: 0;
+    border-bottom: 1px solid #b892d8;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 36px; /* Add padding for better spacing */
+    box-sizing: border-box;
+}
+
+.headerText{
+  color: white;
+  font-size: 24px;
+  font-family: 'Noto Sans KR', sans-serif; /* Added sans-serif fallback */
+  font-weight: 400;
+}
+/* ... (Rest of your CSS styles, converted similarly) */
+.ticketContainer {
+    width: 1100px;
+    height: 205px;
     position: absolute;
-    left: 62px;
-    top: 33px;
-    color: white;
-    font-size: 24px;
-    font-family: 'Noto Sans KR', sans-serif;
-    font-weight: 400;
+    left: 50%;
+    top: 152px; /* Adjusted top position */
+    transform: translateX(-50%);
+    margin-bottom: 30px;
   }
-  
-  
-  .buttonContainer {
-    position: absolute;
-    right: 62px;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-  
-  .button {
-    width: 115px;
+
+
+.ticketRectangle {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: rgba(83, 29, 129, 0.5);
+  border-radius: 31px;
+}
+
+.ticketText {
+  width: 297px;
+  height: 139px;
+  position: absolute;
+  left: 62px;
+  top: 33px;
+  color: white;
+  font-size: 24px;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 400;
+}
+
+
+.buttonContainer {
+  position: absolute;
+  right: 62px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.button {
+  width: 115px;
+  height: 40px;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #2c2c2c;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.resolvedButton {
+  background-color: #241396;
+  color: #00ff1e;
+}
+
+.unresolvedButton {
+    background-color: #998ee8;
+    color: #ff0000;
+}
+
+
+.userIcon {
+    width: 40px;
     height: 40px;
-    padding: 12px;
-    border-radius: 8px;
-    border: 1px solid #2c2c2c;
+    border: 2px solid #e9e7f6;
+    border-radius: 50%;
+    display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 16px;
-    font-family: 'Inter', sans-serif;
-    font-weight: 400;
-    cursor: pointer;
-  }
-  
-  .resolvedButton {
-    background-color: #241396;
-    color: #00ff1e;
-  }
-  
-  .unresolvedButton {
-      background-color: #998ee8;
-      color: #ff0000;
-  }
-  
-  
-  .userIcon {
-      width: 40px;
-      height: 40px;
-      border: 2px solid #e9e7f6;
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-  }
-  
-  .icon {
-    width: 26.67px;
-    height: 30px;
-  }
+}
+
+.icon {
+  width: 26.67px;
+  height: 30px;
+}
