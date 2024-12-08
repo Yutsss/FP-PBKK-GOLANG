@@ -1,16 +1,5 @@
 package dto
 
-//type User struct {
-//	ID           uint   `gorm:"primaryKey;autoIncrement" json:"id"`
-//	Name         string `gorm:"type:varchar(255);not null" json:"name"`
-//	CompleteName string `gorm:"type:varchar(255);not null" json:"complate_name"`
-//	Email        string `gorm:"type:varchar(255);not null" json:"email"`
-//	Password     string `gorm:"type:varchar(255);not null" json:"password"`
-//	PhoneNumber  string `gorm:"type:varchar(255);not null" json:"phone_number"`
-//	Address      string `gorm:"type:varchar(255);not null" json:"address"`
-//	Role         string `gorm:"type:varchar(10);not null;default:'user'" json:"role"`
-//}
-
 type (
 	UserRegisterRequest struct {
 		Name         string `json:"name" form:"name" validate:"required,min=1,max=255"`
@@ -22,7 +11,7 @@ type (
 	}
 
 	UserRegisterResponse struct {
-		ID           uint   `json:"id"`
+		ID           int64  `json:"id"`
 		Name         string `json:"name"`
 		CompleteName string `json:"complete_name"`
 		Email        string `json:"email"`
@@ -42,11 +31,11 @@ type (
 	}
 
 	UserGetByIdRequest struct {
-		UserID uint `json:"id" form:"id" validate:"required"`
+		UserID int64 `json:"id" form:"id" validate:"required"`
 	}
 
 	UserGetByIdResponse struct {
-		ID           uint   `json:"id"`
+		ID           int64  `json:"id"`
 		Name         string `json:"name"`
 		CompleteName string `json:"complete_name"`
 		Email        string `json:"email"`

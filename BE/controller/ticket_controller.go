@@ -16,6 +16,7 @@ type (
 		GetAll(ctx *gin.Context)
 		GetById(ctx *gin.Context)
 		GetByUserId(ctx *gin.Context)
+		AssignById(ctx *gin.Context)
 	}
 
 	ticketController struct {
@@ -119,6 +120,41 @@ func (c *ticketController) GetByUserId(ctx *gin.Context) {
 	}
 
 	res := utility.ResponseSuccess(successUtils.MESSAGE_SUCCESS_GET_TICKET, resData, http.StatusOK)
+
+	ctx.JSON(res.Code, res)
+}
+
+func (c *ticketController) AssignById(ctx *gin.Context) {
+	var req dto.AssignTicketByIdRequest
+	var err errorUtils.CustomError
+
+	req.ID, err = utility.StringToUUID(ctx.Param("ticket_id"))
+
+	if err != nil {
+		res := utility.ResponseError(errorUtils.MESSAGE_FAILED_TO_GET_DATA_FROM_BODY, errorUtils.ErrBadRequest.Error(), errorUtils.ErrBadRequest.Code())
+		ctx.AbortWithStatusJSON(res.Code, res)
+		return
+	}
+
+	req.TechnicianID, err = utility.StringToInt64(ctx.Param("technician_id"))
+
+	if err != nil {
+		res := utility.ResponseError(errorUtils.MESSAGE_FAILED_TO_GET_DATA_FROM_BODY, errorUtils.ErrBadRequest.Error(), errorUtils.ErrBadRequest.Code())
+		ctx.AbortWithStatusJSON(res.Code, res)
+		return
+	}
+
+	req.UserID = ctx.MustGet("user").(dto.AuthPayload).UserID
+
+	err = c.ticketService.AssignById(ctx.Request.Context(), req)
+
+	if err != nil {
+		res := utility.ResponseError(errorUtils.MESSAGE_FAILED_ASSIGN_TICKET, err.Error(), err.Code())
+		ctx.AbortWithStatusJSON(res.Code, res)
+		return
+	}
+
+	res := utility.ResponseSuccess(successUtils.MESSAGE_SUCCESS_ASSIGN_TICKET, nil, http.StatusOK)
 
 	ctx.JSON(res.Code, res)
 }
