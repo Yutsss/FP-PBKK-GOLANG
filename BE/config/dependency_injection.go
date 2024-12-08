@@ -21,8 +21,10 @@ func UserDependencyInjection(db *gorm.DB) controller.UserController {
 }
 
 func TicketDependencyInjection(db *gorm.DB) controller.TicketController {
+	adminRepository := repository.NewAdminRepository(db)
+	technicianRepository := repository.NewTechnicianRepository(db)
 	ticketRepository := repository.NewTicketRepository(db)
-	ticketService := service.NewTicketService(ticketRepository)
+	ticketService := service.NewTicketService(ticketRepository, adminRepository, technicianRepository)
 	ticketController := controller.NewTicketController(ticketService)
 
 	return ticketController

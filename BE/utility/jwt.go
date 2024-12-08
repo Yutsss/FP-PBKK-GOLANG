@@ -12,7 +12,7 @@ import (
 
 type (
 	JWTUtils interface {
-		GenerateToken(userID uint, role string) (string, errorUtils.CustomError)
+		GenerateToken(userID int64, role string) (string, errorUtils.CustomError)
 		ExtractFromCookie(ctx *gin.Context) (string, errorUtils.CustomError)
 		ValidateToken(token string) (*jwt.Token, errorUtils.CustomError)
 		GetPayload(token string) (dto.AuthPayload, errorUtils.CustomError)
@@ -55,7 +55,7 @@ func loadExpTime() (int, error) {
 	return int(duration.Seconds()), nil
 }
 
-func (j *jwtUtils) GenerateToken(userId uint, role string) (string, errorUtils.CustomError) {
+func (j *jwtUtils) GenerateToken(userId int64, role string) (string, errorUtils.CustomError) {
 	expTime, err := loadExpTime()
 
 	if err != nil {
@@ -113,7 +113,7 @@ func (j *jwtUtils) ValidateToken(token string) (*jwt.Token, errorUtils.CustomErr
 func (j *jwtUtils) GetPayload(token string) (dto.AuthPayload, errorUtils.CustomError) {
 	t, err := j.ValidateToken(token)
 	if err != nil {
-		return dto.AuthPayload{}, errorUtils.ErrUnauthorized
+		return dto.AuthPayload{}, err
 	}
 
 	claims, ok := t.Claims.(jwt.MapClaims)
@@ -122,7 +122,7 @@ func (j *jwtUtils) GetPayload(token string) (dto.AuthPayload, errorUtils.CustomE
 	}
 
 	return dto.AuthPayload{
-		UserID: uint(claims["user_id"].(float64)),
+		UserID: int64(claims["user_id"].(float64)),
 		Role:   claims["role"].(string),
 	}, nil
 }

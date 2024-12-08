@@ -59,6 +59,5 @@ var (
 	ErrUserNotFound          = NewCustomError(errors.New("User not found"), http.StatusNotFound)
 	ErrTicketNotFound        = NewCustomError(errors.New("Ticket not found"), http.StatusNotFound)
 	ErrTicketAlreadyAssigned = NewCustomError(errors.New("Ticket already assigned"), http.StatusConflict)
-	ErrTechnicianNotReady    = NewCustomError(errors.New("Technician is not ready"), http.StatusConflict)
 	ErrTechnicianNotFound    = NewCustomError(errors.New("Technician not found"), http.StatusNotFound)
 )

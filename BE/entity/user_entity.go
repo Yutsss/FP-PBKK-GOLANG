@@ -6,15 +6,17 @@ import (
 )
 
 type User struct {
-	ID           uint   `gorm:"primaryKey;autoIncrement" json:"id"`
-	Name         string `gorm:"type:varchar(255);not null" json:"name"`
-	CompleteName string `gorm:"type:varchar(255);not null" json:"complate_name"`
-	Email        string `gorm:"type:varchar(255);not null;uniqueIndex" json:"email"`
-	Password     string `gorm:"type:varchar(255);not null" json:"password"`
-	PhoneNumber  string `gorm:"type:varchar(255);not null" json:"phone_number"`
-	Address      string `gorm:"type:varchar(255);not null" json:"address"`
-	Role         string `gorm:"type:varchar(10);not null;default:'user'" json:"role"`
-	Admin        Admin  `gorm:"foreignKey:UserID;references:ID" json:"admin"`
+	ID           int64      `gorm:"primaryKey;autoIncrement" json:"id"`
+	Name         string     `gorm:"type:varchar(255);not null" json:"name"`
+	CompleteName string     `gorm:"type:varchar(255);not null" json:"complate_name"`
+	Email        string     `gorm:"type:varchar(255);not null;uniqueIndex" json:"email"`
+	Password     string     `gorm:"type:varchar(255);not null" json:"password"`
+	PhoneNumber  string     `gorm:"type:varchar(255);not null" json:"phone_number"`
+	Address      string     `gorm:"type:varchar(255);not null" json:"address"`
+	Role         string     `gorm:"type:varchar(10);not null;default:'user'" json:"role"`
+	Admin        Admin      `gorm:"foreignKey:UserID;references:ID" json:"admin"`
+	Technician   Technician `gorm:"foreignKey:UserID;references:ID" json:"technician"`
+	Tickets      []Ticket   `gorm:"foreignKey:UserID;references:ID" json:"tickets"`
 }
 
 func (u *User) BeforeCreate(tx *gorm.DB) error {
