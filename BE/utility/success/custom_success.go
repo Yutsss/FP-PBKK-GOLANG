@@ -12,4 +12,5 @@ const (
 	MESSAGE_SUCCESS_GET_ALL_TICKET_EMPTY = "No tickets found"
 	MESSAGE_SUCCESS_ASSIGN_TICKET        = "Ticket assigned successfully"
 	MESSAGE_SUCCESS_GET_TICKET           = "Ticket retrieved successfully"
+	MESSAGE_SUCCESS_CLOSE_TICKET         = "Ticket closed successfully"
 )

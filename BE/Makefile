@@ -19,7 +19,7 @@ migrate-prod:
 	GO_ENV=production  go run main.go --migrate
 
 run-build:
-	./$(APP_NAME)
+	GO_ENV=development ./$(APP_NAME)
 
 run-start-dev:
 	GO_ENV=development ./$(APP_NAME)

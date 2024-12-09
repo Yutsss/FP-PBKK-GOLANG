@@ -6,6 +6,19 @@ import (
 
 type (
 	TicketResponse struct {
+		ID           uuid.UUID   `json:"id"`
+		UserID       int64       `json:"user_id"`
+		AdminID      int64       `json:"admin_id"`
+		LogID        int64       `json:"log_id"`
+		TechnicianID int64       `json:"technician_id"`
+		Title        string      `json:"title"`
+		Description  string      `json:"description"`
+		Category     string      `json:"category"`
+		Status       string      `json:"status"`
+		Log          LogResponse `json:"log,omitempty"`
+	}
+
+	TicketsResponse struct {
 		ID           uuid.UUID `json:"id"`
 		UserID       int64     `json:"user_id"`
 		AdminID      int64     `json:"admin_id"`
@@ -42,7 +55,7 @@ type (
 	}
 
 	GetAllTicketResponse struct {
-		Tickets []TicketResponse `json:"tickets"`
+		Tickets []TicketsResponse `json:"tickets"`
 	}
 
 	GetTicketByUserIDRequest struct {
@@ -50,7 +63,7 @@ type (
 	}
 
 	GetTicketByUserIDResponse struct {
-		Tickets []TicketResponse `json:"tickets"`
+		Tickets []TicketsResponse `json:"tickets"`
 	}
 
 	UpdateTicketData struct {
@@ -67,5 +80,12 @@ type (
 
 	AssignTicketByIdResponse struct {
 		Ticket TicketResponse `json:"ticket"`
+	}
+
+	CloseTicketByIdRequest struct {
+		TicketId     uuid.UUID `json:"ticket_id" validate:"required"`
+		UserID       int64     `json:"user_id" validate:"required"`
+		TechnicianID int64     `json:"technician_id"`
+		Activity     string    `json:"activity" validate:"required,min=1"`
 	}
 )
