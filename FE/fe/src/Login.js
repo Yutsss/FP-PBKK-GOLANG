@@ -9,19 +9,38 @@ export const Login = () => {
   const [role, setRole] = useState('guest'); // Default role
 
   // Handle login logic
-  const handleLogin = () => {
-    // Simulating login (replace with real logic)
-    if (email === 'admin@example.com' && password === 'admin') {
-      // Set user as logged in and assign admin role
+  const handleLogin = async () => {
+    try {
+      const response = await fetch('https://api.beteam1genics.my.id/api/user/login', {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }), // Mengirimkan email dan password
+      });
+  
+      // Jika response tidak OK, lemparkan error
+      if (!response.ok) {
+        throw new Error('Invalid login credentials');
+      }
+  
+      // Ambil data dari response (misalnya role dan token)
+      const data = await response.json();
+  
+      // Jika login sukses, set user status
       setLoggedIn(true);
-      setRole('admin');
-    } else if (email === 'user@example.com' && password === 'user') {
-      setLoggedIn(true);
-      setRole('user');
-    } else {
-      alert('Invalid login credentials');
+      setRole(data.role); // Misalnya, role datang dari response
+  
+      // Menyimpan token atau data lainnya ke localStorage/sessionStorage jika diperlukan
+      localStorage.setItem('authToken', data.token); // Contoh token untuk autentikasi
+  
+    } catch (error) {
+      // Tampilkan error jika ada
+      alert(error.message);
     }
   };
+  
 
   return (
     <div className="login">

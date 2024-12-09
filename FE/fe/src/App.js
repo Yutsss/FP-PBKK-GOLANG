@@ -18,7 +18,7 @@ import { Routes, Route, Link } from "react-router-dom";
 
 function App() {
   // Example state for user login status and role
-  const [user, setUser] = useState({ loggedIn: false, role: 'guest' }); // 'guest' is the default
+  const [user, setUser] = useState({ loggedIn: true, role: 'guest' }); // 'guest' is the default
   // const navigate = useNavigate();
   // // Function to handle "Check Tickets" logic
   // const handleCheckTickets = () => {

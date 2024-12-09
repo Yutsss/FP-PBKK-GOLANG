@@ -2,6 +2,9 @@ package main
 
 import (
 	"fmt"
+	"log"
+	"os"
+
 	"github.com/Yutsss/FP-PBKK-GOLANG/BE/command"
 	"github.com/Yutsss/FP-PBKK-GOLANG/BE/config"
 	"github.com/Yutsss/FP-PBKK-GOLANG/BE/constants"
@@ -9,8 +12,6 @@ import (
 	"github.com/Yutsss/FP-PBKK-GOLANG/BE/route"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
-	"log"
-	"os"
 )
 
 func main() {

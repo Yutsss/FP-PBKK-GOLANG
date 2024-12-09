@@ -1,106 +1,80 @@
-.userCheckTicketsLoggedIn {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  background: #0d0911;
+.technician-tickets {
+  background-color: #0d0911;
+  display: flex;
+  flex-direction: column; /* Mengatur tiket secara vertikal */
+  align-items: center; /* Mengatur elemen ke tengah */
+  gap: 20px; /* Jarak antar tiket */
+  padding: 20px;
+  width: 100%; /* Lebar penuh */
+  min-height: 100vh; /* Tinggi minimal layar */
+  box-sizing: border-box;
 }
 
-.header {
-    width: 100%;
-    height: 96px;
-    position: absolute;
-    left: 0;
-    top: 0;
-    border-bottom: 1px solid #b892d8;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 36px; /* Add padding for better spacing */
-    box-sizing: border-box;
+.ticket-card {
+  background-color: #b892d880;
+  border-radius: 15px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column; /* Elemen dalam kartu diatur vertikal */
+  gap: 15px;
+  width: 90%; /* Responsif dengan ukuran layar */
+  max-width: 1200px; /* Batas maksimum lebar */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.headerText{
-  color: white;
-  font-size: 24px;
-  font-family: 'Noto Sans KR', sans-serif; /* Added sans-serif fallback */
-  font-weight: 400;
-}
-/* ... (Rest of your CSS styles, converted similarly) */
-.ticketContainer {
-    width: 1100px;
-    height: 205px;
-    position: absolute;
-    left: 50%;
-    top: 152px; /* Adjusted top position */
-    transform: translateX(-50%);
-    margin-bottom: 30px;
-  }
-
-
-.ticketRectangle {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  background: rgba(83, 29, 129, 0.5);
-  border-radius: 31px;
+.ticket-info {
+  color: #ffffff;
+  font-family: "Noto Sans KR-Regular", Helvetica;
+  font-size: 16px;
+  line-height: 1.5;
 }
 
-.ticketText {
-  width: 297px;
-  height: 139px;
-  position: absolute;
-  left: 62px;
-  top: 33px;
-  color: white;
-  font-size: 24px;
-  font-family: 'Noto Sans KR', sans-serif;
-  font-weight: 400;
-}
-
-
-.buttonContainer {
-  position: absolute;
-  right: 62px;
-  top: 50%;
-  transform: translateY(-50%);
+.ticket-actions {
+  display: flex;
+  justify-content: flex-end; /* Tombol diatur ke kanan */
+  gap: 10px; /* Jarak antar tombol */
 }
 
 .button {
-  width: 115px;
-  height: 40px;
-  padding: 12px;
-  border-radius: 8px;
-  border: 1px solid #2c2c2c;
-  justify-content: center;
-  align-items: center;
+  padding: 10px 20px;
+  background-color: #531d81;
+  border: none;
+  border-radius: 5px;
+  color: #ffffff;
   font-size: 16px;
-  font-family: 'Inter', sans-serif;
-  font-weight: 400;
   cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-.resolvedButton {
-  background-color: #241396;
-  color: #00ff1e;
+.button:hover {
+  background-color: #6948b3;
+}
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.unresolvedButton {
-    background-color: #998ee8;
-    color: #ff0000;
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+  max-width: 90%;
 }
 
-
-.userIcon {
-    width: 40px;
-    height: 40px;
-    border: 2px solid #e9e7f6;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.icon {
-  width: 26.67px;
-  height: 30px;
+.close-button {
+  background: red;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-top: 10px;
 }
