@@ -47,6 +47,7 @@ const (
 	MESSAGE_FAILED_GET_ALL_TICKET        = "Failed to get all ticket"
 	MESSAGE_FAILED_GET_TICKET            = "Failed to get ticket"
 	MESSAGE_FAILED_ASSIGN_TICKET         = "Failed to assign ticket"
+	MESSAGE_FAILED_CLOSE_TICKET          = "Failed to close ticket"
 )
 
 var (
@@ -60,4 +61,6 @@ var (
 	ErrTicketNotFound        = NewCustomError(errors.New("Ticket not found"), http.StatusNotFound)
 	ErrTicketAlreadyAssigned = NewCustomError(errors.New("Ticket already assigned"), http.StatusConflict)
 	ErrTechnicianNotFound    = NewCustomError(errors.New("Technician not found"), http.StatusNotFound)
+	ErrTicketNotAssigned     = NewCustomError(errors.New("Ticket not assigned"), http.StatusConflict)
+	ErrAlreadyClosed         = NewCustomError(errors.New("Ticket already closed"), http.StatusConflict)
 )

@@ -17,6 +17,7 @@ type (
 		GetById(ctx *gin.Context)
 		GetByUserId(ctx *gin.Context)
 		AssignById(ctx *gin.Context)
+		CloseById(ctx *gin.Context)
 	}
 
 	ticketController struct {
@@ -155,6 +156,39 @@ func (c *ticketController) AssignById(ctx *gin.Context) {
 	}
 
 	res := utility.ResponseSuccess(successUtils.MESSAGE_SUCCESS_ASSIGN_TICKET, nil, http.StatusOK)
+
+	ctx.JSON(res.Code, res)
+}
+
+func (c *ticketController) CloseById(ctx *gin.Context) {
+	var req dto.CloseTicketByIdRequest
+	var err errorUtils.CustomError
+
+	req.TicketId, err = utility.StringToUUID(ctx.Param("ticket_id"))
+
+	if err != nil {
+		res := utility.ResponseError(errorUtils.MESSAGE_FAILED_TO_GET_DATA_FROM_BODY, errorUtils.ErrBadRequest.Error(), errorUtils.ErrBadRequest.Code())
+		ctx.AbortWithStatusJSON(res.Code, res)
+		return
+	}
+
+	req.UserID = ctx.MustGet("user").(dto.AuthPayload).UserID
+
+	if err := ctx.ShouldBind(&req); err != nil {
+		res := utility.ResponseError(errorUtils.MESSAGE_FAILED_TO_GET_DATA_FROM_BODY, errorUtils.ErrBadRequest.Error(), errorUtils.ErrBadRequest.Code())
+		ctx.AbortWithStatusJSON(res.Code, res)
+		return
+	}
+
+	err = c.ticketService.CloseById(ctx.Request.Context(), req)
+
+	if err != nil {
+		res := utility.ResponseError(errorUtils.MESSAGE_FAILED_CLOSE_TICKET, err.Error(), err.Code())
+		ctx.AbortWithStatusJSON(res.Code, res)
+		return
+	}
+
+	res := utility.ResponseSuccess(successUtils.MESSAGE_SUCCESS_CLOSE_TICKET, nil, http.StatusOK)
 
 	ctx.JSON(res.Code, res)
 }

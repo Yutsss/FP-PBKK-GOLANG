@@ -34,7 +34,11 @@ func (r *technicianRepository) FindByUserId(ctx context.Context, tx *gorm.DB, us
 	err := tx.WithContext(ctx).Where("user_id = ?", userID).First(&technician).Error
 
 	if err != nil {
-		return entity.Technician{}, errorUtils.ErrInternalServer
+		if errors.As(err, &gorm.ErrRecordNotFound) {
+			return entity.Technician{}, errorUtils.ErrTechnicianNotFound
+		} else {
+			return entity.Technician{}, errorUtils.ErrInternalServer
+		}
 	}
 
 	return technician, nil
